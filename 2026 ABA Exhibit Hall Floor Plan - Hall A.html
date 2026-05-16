@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)file:///Users/nealsutton/Downloads/ABA_Exhibit_Floor_Plan_13.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="description" content="2026 ABA Exhibit Hall Floor Plan - Interactive booth directory">
+    <link rel="manifest" href="data:application/json,{%22name%22:%222026 ABA Floor Plan%22,%22short_name%22:%22ABA Floor Plan%22,%22start_url%22:%22./%22,%22display%22:%22standalone%22,%22background_color%22:%22%23ffffff%22,%22theme_color%22:%22%234CAF50%22,%22orientation%22:%22portrait-primary%22}">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 180 180&#39;&gt;&lt;rect fill=&#39;%234CAF50&#39; width=&#39;180&#39; height=&#39;180&#39;/&gt;&lt;text x=&#39;50%&#39; y=&#39;50%&#39; font-size=&#39;100&#39; fill=&#39;white&#39; text-anchor=&#39;middle&#39; dy=&#39;.3em&#39; font-weight=&#39;bold&#39;&gt;ABA&lt;/text&gt;&lt;/svg&gt;">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 180 180&#39;&gt;&lt;rect fill=&#39;%234CAF50&#39; width=&#39;180&#39; height=&#39;180&#39;/&gt;&lt;text x=&#39;50%&#39; y=&#39;50%&#39; font-size=&#39;100&#39; fill=&#39;white&#39; text-anchor=&#39;middle&#39; dy=&#39;.3em&#39; font-weight=&#39;bold&#39;&gt;ABA&lt;/text&gt;&lt;/svg&gt;">
+    <title>2026 ABA Exhibit Hall Floor Plan - Hall A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 2em;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .controls {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+        }
+
+        .floor-plan {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .floor-title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .floor-subtitle {
+            text-align: center;
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .layout-wrapper {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .column.reversed {
+            flex-direction: column-reverse;
+        }
+
+        .booth {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #999;
+            border-radius: 3px;
+            padding: 5px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 0.7em;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .booth:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            z-index: 5;
+        }
+
+        .booth-num {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .booth-name {
+            font-size: 0.55em;
+            color: #555;
+            font-weight: 500;
+            word-break: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1;
+        }
+
+        .booth.occupied {
+            background: #e3f2fd;
+            border-color: #1976d2;
+        }
+
+        .booth.partner {
+            background: #fff3e0;
+            border-color: #f57c00;
+        }
+
+        .booth.empty {
+            background: #f5f5f5;
+            border-color: #bbb;
+        }
+
+        .booth.empty .booth-name {
+            color: #999;
+        }
+
+        .booth.highlighted {
+            background: #fffde7 !important;
+            border: 3px solid #fbc02d !important;
+            box-shadow: 0 0 10px rgba(251, 192, 45, 0.6) !important;
+            transform: scale(1.08) !important;
+            z-index: 10;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .legend {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+        }
+
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #999;
+            border-radius: 2px;
+        }
+
+        .legend-color.aba {
+            background: #e3f2fd;
+            border-color: #1976d2;
+        }
+
+        .legend-color.partner {
+            background: #fff3e0;
+            border-color: #f57c00;
+        }
+
+        .legend-color.empty {
+            background: #f5f5f5;
+            border-color: #bbb;
+        }
+
+        .info-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #4CAF50;
+            font-size: 0.8em;
+            margin-top: 15px;
+        }
+
+        .info-box h4 {
+            color: #4CAF50;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .info-row {
+            margin-bottom: 6px;
+            color: #666;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            font-size: 0.75em;
+            margin-bottom: 2px;
+        }
+
+        .info-value {
+            font-size: 0.8em;
+            word-break: break-word;
+        }
+
+        .no-selection {
+            color: #999;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media print {
+            body { background: white; }
+            .controls, .sidebar { display: none; }
+            .main-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HALL A</h1>
+            <p>2026 ABA 100th Messenger Assembly • Hot Springs Convention Center • June 22-25, 2026</p>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="boothSearch" placeholder="Search booth # or exhibitor...">
+                <button class="btn-secondary" onclick="clearSearch()">Clear</button>
+            </div>
+            <button class="btn-primary" onclick="window.print()">🖨️ Print</button>
+        </div>
+
+        <div class="main-content">
+            <div class="floor-plan">
+                <div class="floor-title">HALL A</div>
+                <div class="floor-subtitle">10x10 Booths</div>
+                <div class="layout-wrapper" id="hallLayout"><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">107</div><div class="booth-name">Restoration Hill</div></div><div class="booth occupied"><div class="booth-num">106</div><div class="booth-name">Faith Baptist</div></div><div class="booth occupied"><div class="booth-num">77</div><div class="booth-name">Juan Gallegos</div></div><div class="booth occupied"><div class="booth-num">76</div><div class="booth-name">Freedom Ministries</div></div><div class="booth occupied"><div class="booth-num">47</div><div class="booth-name">Japanese Missions</div></div><div class="booth occupied"><div class="booth-num">46</div><div class="booth-name">Maness Family</div></div><div class="booth occupied"><div class="booth-num">17</div><div class="booth-name">Reach Alaska</div></div><div class="booth occupied"><div class="booth-num">16</div><div class="booth-name">Agape Mission</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">108</div><div class="booth-name">College Station</div></div><div class="booth occupied"><div class="booth-num">105</div><div class="booth-name">Jenna Summers</div></div><div class="booth occupied"><div class="booth-num">78</div><div class="booth-name">Prevailing Hope</div></div><div class="booth occupied"><div class="booth-num">75</div><div class="booth-name">Cedar Hills</div></div><div class="booth occupied"><div class="booth-num">48</div><div class="booth-name">The Phillips</div></div><div class="booth occupied"><div class="booth-num">45</div><div class="booth-name">Langdon Street</div></div><div class="booth partner"><div class="booth-num">18</div><div class="booth-name">Global Surge</div></div><div class="booth occupied"><div class="booth-num">15</div><div class="booth-name">Crazy Faith</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">109</div><div class="booth-name">Missionary TECH</div></div><div class="booth occupied"><div class="booth-num">104</div><div class="booth-name">Second Baptist</div></div><div class="booth partner"><div class="booth-num">79</div><div class="booth-name">Visit Jacksonville</div></div><div class="booth occupied"><div class="booth-num">74</div><div class="booth-name">Cornerstone MBC/Nanna</div></div><div class="booth occupied"><div class="booth-num">49</div><div class="booth-name">Women's Assistance</div></div><div class="booth occupied"><div class="booth-num">44</div><div class="booth-name">Missionary Travel</div></div><div class="booth partner"><div class="booth-num">19</div><div class="booth-name">LBU Global</div></div><div class="booth occupied"><div class="booth-num">14</div><div class="booth-name">ABA Credit</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">110</div><div class="booth-name">Life and</div></div><div class="booth occupied"><div class="booth-num">103</div><div class="booth-name">Second Baptist</div></div><div class="booth occupied"><div class="booth-num">80</div><div class="booth-name">Mississippi Baptist</div></div><div class="booth occupied"><div class="booth-num">73</div><div class="booth-name">Ministries in</div></div><div class="booth occupied"><div class="booth-num">50</div><div class="booth-name">On Mission</div></div><div class="booth occupied"><div class="booth-num">43</div><div class="booth-name">VLMBC Missions</div></div><div class="booth occupied"><div class="booth-num">20</div><div class="booth-name">Gospelflight</div></div><div class="booth occupied"><div class="booth-num">13</div><div class="booth-name">Seeing Truth</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">111</div><div class="booth-name">Interstate Mission</div></div><div class="booth occupied"><div class="booth-num">102</div><div class="booth-name">Copenhagen Bethel</div></div><div class="booth occupied"><div class="booth-num">81</div><div class="booth-name">Bro. Glen</div></div><div class="booth occupied"><div class="booth-num">72</div><div class="booth-name">Iglesia Bautista</div></div><div class="booth occupied"><div class="booth-num">51</div><div class="booth-name">F.I.S.H Ministries</div></div><div class="booth occupied"><div class="booth-num">42</div><div class="booth-name">Kings Park</div></div><div class="booth occupied"><div class="booth-num">21</div><div class="booth-name">Gulf Coast</div></div><div class="booth occupied"><div class="booth-num">12</div><div class="booth-name">Michio Kawahara,</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">112</div><div class="booth-name">James Greene</div></div><div class="booth occupied"><div class="booth-num">101</div><div class="booth-name">Morrow Music</div></div><div class="booth occupied"><div class="booth-num">82</div><div class="booth-name">Light of</div></div><div class="booth occupied"><div class="booth-num">71</div><div class="booth-name">Jay Ross</div></div><div class="booth occupied"><div class="booth-num">52</div><div class="booth-name">F.I.S.H Ministries</div></div><div class="booth occupied"><div class="booth-num">41</div><div class="booth-name">Arkansas State</div></div><div class="booth occupied"><div class="booth-num">22</div><div class="booth-name">Gulf Coast</div></div><div class="booth occupied"><div class="booth-num">11</div><div class="booth-name">Broken Spokes</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">113</div><div class="booth-name">Cornerstone Baptist</div></div><div class="booth occupied"><div class="booth-num">100</div><div class="booth-name">Texas Baptist</div></div><div class="booth occupied"><div class="booth-num">83</div><div class="booth-name">Texas Baptist</div></div><div class="booth occupied"><div class="booth-num">70</div><div class="booth-name">Outreach Bible</div></div><div class="booth occupied"><div class="booth-num">53</div><div class="booth-name">Texarkana Baptist</div></div><div class="booth occupied"><div class="booth-num">40</div><div class="booth-name">Arkansas State</div></div><div class="booth occupied"><div class="booth-num">23</div><div class="booth-name">Lighthouse Electrical</div></div><div class="booth occupied"><div class="booth-num">10</div><div class="booth-name">Ukraine Missions,</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">114</div><div class="booth-name">Emmaus Baptist</div></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div class="booth occupied"><div class="booth-num">9</div><div class="booth-name">Faith Bible</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">115</div><div class="booth-name">Emmaus Baptist</div></div><div class="booth occupied"><div class="booth-num">99</div><div class="booth-name">Matthew &amp;</div></div><div class="booth occupied"><div class="booth-num">84</div><div class="booth-name">Chuck Fernandez</div></div><div class="booth occupied"><div class="booth-num">69</div><div class="booth-name">Mexican Baptist</div></div><div class="booth occupied"><div class="booth-num">54</div><div class="booth-name">Verse By</div></div><div class="booth occupied"><div class="booth-num">39</div><div class="booth-name">Barin Field</div></div><div class="booth occupied"><div class="booth-num">24</div><div class="booth-name">Isaiah 55:11</div></div><div class="booth occupied"><div class="booth-num">8</div><div class="booth-name">Faith Bible</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">116</div><div class="booth-name">Mattingly Family</div></div><div class="booth occupied"><div class="booth-num">98</div><div class="booth-name">Calvary Baptist</div></div><div class="booth occupied"><div class="booth-num">85</div><div class="booth-name">Tabernacle Ministries</div></div><div class="booth occupied"><div class="booth-num">68</div><div class="booth-name">Mexican Baptist</div></div><div class="booth occupied"><div class="booth-num">55</div><div class="booth-name">Tanzanian Missions</div></div><div class="booth occupied"><div class="booth-num">38</div><div class="booth-name">Central States</div></div><div class="booth occupied"><div class="booth-num">25</div><div class="booth-name">ABA Chaplaincy</div></div><div class="booth occupied"><div class="booth-num">7</div><div class="booth-name">Faith Bible</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">117</div><div class="booth-name">Westwood MBC</div></div><div class="booth occupied"><div class="booth-num">97</div><div class="booth-name">Lifeline Baptist</div></div><div class="booth occupied"><div class="booth-num">86</div><div class="booth-name">Ray of</div></div><div class="booth occupied"><div class="booth-num">67</div><div class="booth-name">Léon, Mexico</div></div><div class="booth occupied"><div class="booth-num">56</div><div class="booth-name">Harvest Panama</div></div><div class="booth occupied"><div class="booth-num">37</div><div class="booth-name">The Remote</div></div><div class="booth occupied"><div class="booth-num">26</div><div class="booth-name">ABA Chaplaincy</div></div><div class="booth partner"><div class="booth-num">6</div><div class="booth-name">Discover Green</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">118</div><div class="booth-name">Westwood MBC</div></div><div class="booth occupied"><div class="booth-num">96</div><div class="booth-name">Missionary Training</div></div><div class="booth occupied"><div class="booth-num">87</div><div class="booth-name">Louisiana Missionary</div></div><div class="booth occupied"><div class="booth-num">66</div><div class="booth-name">Missionary Baptist</div></div><div class="booth occupied"><div class="booth-num">57</div><div class="booth-name">Philippine Mission</div></div><div class="booth occupied"><div class="booth-num">36</div><div class="booth-name">Ride For</div></div><div class="booth occupied"><div class="booth-num">27</div><div class="booth-name">ABA Chaplaincy</div></div><div class="booth occupied"><div class="booth-num">5</div><div class="booth-name">Jerry Bailey</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">119</div><div class="booth-name">ABA Disaster</div></div><div class="booth occupied"><div class="booth-num">95</div><div class="booth-name">Macedonian Missionary</div></div><div class="booth occupied"><div class="booth-num">88</div><div class="booth-name">HPB Publishing</div></div><div class="booth occupied"><div class="booth-num">65</div><div class="booth-name">Missionary Baptist</div></div><div class="booth occupied"><div class="booth-num">58</div><div class="booth-name">Ft Wayne</div></div><div class="booth occupied"><div class="booth-num">35</div><div class="booth-name">Compass NYC</div></div><div class="booth occupied"><div class="booth-num">28</div><div class="booth-name">New Road</div></div><div class="booth occupied"><div class="booth-num">4</div><div class="booth-name">The Burdettes</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">120</div><div class="booth-name">ABA Disaster</div></div><div class="booth occupied"><div class="booth-num">94</div><div class="booth-name">Macedonian Missionary</div></div><div class="booth occupied"><div class="booth-num">89</div><div class="booth-name">HPB Publishing</div></div><div class="booth occupied"><div class="booth-num">64</div><div class="booth-name">MBSF @</div></div><div class="booth occupied"><div class="booth-num">59</div><div class="booth-name">Labor of</div></div><div class="booth occupied"><div class="booth-num">34</div><div class="booth-name">Landmark Baptist</div></div><div class="booth occupied"><div class="booth-num">29</div><div class="booth-name">New Road</div></div><div class="booth occupied"><div class="booth-num">3</div><div class="booth-name">Faith Baptist</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">121</div><div class="booth-name">Bogard Press</div></div><div class="booth occupied"><div class="booth-num">93</div><div class="booth-name">Bogard Press</div></div><div class="booth occupied"><div class="booth-num">90</div><div class="booth-name">WWLMS</div></div><div class="booth occupied"><div class="booth-num">63</div><div class="booth-name">National Center</div></div><div class="booth occupied"><div class="booth-num">60</div><div class="booth-name">Missionary Alan</div></div><div class="booth occupied"><div class="booth-num">33</div><div class="booth-name">Concord Baptist</div></div><div class="booth occupied"><div class="booth-num">30</div><div class="booth-name">SAU MBSF</div></div><div class="booth occupied"><div class="booth-num">2</div><div class="booth-name">International Christian</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">122</div><div class="booth-name">Bogard Press</div></div><div class="booth occupied"><div class="booth-num">92</div><div class="booth-name">Baptist Book</div></div><div class="booth occupied"><div class="booth-num">91</div><div class="booth-name">Utah Missions</div></div><div class="booth occupied"><div class="booth-num">62</div><div class="booth-name">ABA Missions</div></div><div class="booth occupied"><div class="booth-num">61</div><div class="booth-name">ABA Missions</div></div><div class="booth occupied"><div class="booth-num">32</div><div class="booth-name">ABA History</div></div><div class="booth occupied"><div class="booth-num">31</div><div class="booth-name">Heart Way</div></div><div class="booth occupied"><div class="booth-num">1</div><div class="booth-name">International Christian</div></div></div><div style="display: flex; gap: 15px; justify-content: center;"><div class="booth occupied"><div class="booth-num">123</div><div class="booth-name">Bogard Press</div></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div><div style="width: 70px; height: 70px;"></div></div></div></div>
+            </div>
+
+            <div class="sidebar">
+                <h3>Legend</h3>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color aba"></div>
+                        <span>ABA Organization</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color partner"></div>
+                        <span>Partner Org</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color empty"></div>
+                        <span>Available</span>
+                    </div>
+                </div>
+
+                <h3>Booth Details</h3>
+                <div id="boothDetails" class="info-box no-selection">
+                <h4>Booth 46</h4>
+                <div class="info-row"><span class="info-label">Org:</span><span class="info-value">Maness Family in Argentina</span></div>
+                <div class="info-row"><span class="info-label">Type:</span><span class="info-value"><strong>ABA</strong></span></div>
+                <div class="info-row"><span class="info-label">Contact:</span><span class="info-value">Scott K. Maness</span></div>
+                <div class="info-row"><span class="info-label">Phone:</span><span class="info-value"><a href="tel:903-793-0548">903-793-0548</a></span></div>
+                <div class="info-row"><span class="info-label">Email:</span><span class="info-value"><a href="mailto:smaness@manessargentina.org">smaness@manessargentina.org</a></span></div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const exhibitors = {
+            1: { name: "International Christian Publishers", org: "International Christian Publishers", rep: "Bill Johnson", title: "President", phone: "903-278-2648", email: "billjohnson@icplit.org", city: "Texarkana, AR", type: "ABA" },
+            2: { name: "International Christian Publishers", org: "International Christian Publishers", rep: "Bill Johnson", title: "President", phone: "903-278-2648", email: "billjohnson@icplit.org", city: "Texarkana, AR", type: "ABA" },
+            3: { name: "Faith Baptist Church/Sterlington Missions", org: "Promise Land MBC", rep: "Kevin Hutcheson", title: "Missionary/Pastor", phone: "863-308-5546", email: "khutch324@gmail.com", city: "Sterlington, LA", type: "ABA" },
+            4: { name: "The Burdettes at Monterey, TN", org: "Hopewell Baptist Church", rep: "Terry Romine", title: "Pastor", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+            5: { name: "Jerry Bailey", org: "N/A", rep: "N/A", title: "", phone: "", email: "", city: "", type: "ABA" },
+            6: { name: "Discover Green Bay", org: "Discover Green Bay", rep: "Michael Cherek", title: "Sales Manager", phone: "920-770-1470", email: "michael@greenbay.com", city: "Green Bay, WI", type: "Partner" },
+            7: { name: "Faith Bible Institute", org: "Faith Bible Institute", rep: "Wes Pleasants", title: "Conference Coordinator", phone: "318-235-1441", email: "wes@fbiclass.com", city: "Monroe, LA", type: "ABA" },
+            8: { name: "Faith Bible Institute", org: "Faith Bible Institute", rep: "Wes Pleasants", title: "Conference Coordinator", phone: "318-235-1441", email: "wes@fbiclass.com", city: "Monroe, LA", type: "ABA" },
+            9: { name: "Faith Bible Institute", org: "Faith Bible Institute", rep: "Wes Pleasants", title: "Conference Coordinator", phone: "318-235-1441", email: "wes@fbiclass.com", city: "Monroe, LA", type: "ABA" },
+            10: { name: "Ukraine Missions, Pearl MBC", org: "Pearl MBC", rep: "Tony C. Hansen", title: "Missionary", phone: "812-372-5999", email: "tonerlandmark@aol.com", city: "Columbus, IN", type: "ABA" },
+            11: { name: "Broken Spokes Motorcycle Ministry", org: "Broken Spokes", rep: "Herbert S. Salter", title: "Director", phone: "360-434-6871", email: "tsalter2081@msn.com", city: "Bremerton, WA", type: "ABA" },
+            12: { name: "Michio Kawahara, Yokohama, Japan", org: "Unity MBC", rep: "Mark Harris", title: "Pastor", phone: "501-831-2105", email: "dean@mb-seminary.net", city: "Little Rock, AR", type: "ABA" },
+            13: { name: "Seeing Truth Ministry", org: "Wellston MBC", rep: "Ken Sibley", title: "Missionary", phone: "859-321-6634", email: "seeingtruth@gmail.com", city: "Walker, LA", type: "ABA" },
+            14: { name: "ABA Credit Union", org: "American Baptist Association Credit Union", rep: "Julie Knight", title: "President", phone: "832-465-1415", email: "aba@abacu.org", city: "Angleton, TX", type: "ABA" },
+            15: { name: "Crazy Faith Designs", org: "Crazy Faith Designs", rep: "Chad Helton", title: "Missionary", phone: "985-750-7723", email: "chad@crazyfaithdesigns.net", city: "Mt. Enterprise, TX", type: "ABA" },
+            16: { name: "Agape Mission Baptist Church", org: "Agape Mission Baptist", rep: "Thang Sian", title: "Missionary", phone: "616-272-2057", email: "nateslowe@gmail.com", city: "Kentwood, MI", type: "ABA" },
+            17: { name: "Reach Alaska", org: "Reach Alaska", rep: "James Shields", title: "Missionary", phone: "903-812-4148", email: "familyofshields@gmail.com", city: "Wasilla, AK", type: "ABA" },
+            18: { name: "Global Surge", org: "Global Surge", rep: "Melissa Crawford", title: "Marketing Director", phone: "785-414-8614", email: "melissa@globalsurge.org", city: "Pueblo, CO", type: "Partner" },
+            19: { name: "LBU Global", org: "LBU Global", rep: "S. McLean Jones", title: "Director of Operations", phone: "318-686-2360", email: "mjones@lbu.edu", city: "Shreveport, LA", type: "Partner" },
+            20: { name: "Gospelflight", org: "Gospelflight Aviation", rep: "Randall Gillespie", title: "Director", phone: "918-430-7868", email: "randall@gospelflight.org", city: "Catoosa, OK", type: "ABA" },
+            21: { name: "Gulf Coast Baptist College", org: "Gulf Coast Baptist College", rep: "Herman Strickland", title: "President", phone: "361-573-1141", email: "hstrickland@gcbc.edu", city: "Corpus Christi, TX", type: "ABA" },
+            22: { name: "Gulf Coast Baptist College", org: "Gulf Coast Baptist College", rep: "Herman Strickland", title: "President", phone: "361-573-1141", email: "hstrickland@gcbc.edu", city: "Corpus Christi, TX", type: "ABA" },
+            23: { name: "Lighthouse Electrical Ministries", org: "Lighthouse Electrical", rep: "Kevin Mattox", title: "Director", phone: "903-794-1733", email: "kmattox@lighthouselec.com", city: "Texarkana, TX", type: "ABA" },
+            24: { name: "Isaiah 55:11 Project", org: "Isaiah 55:11 Project", rep: "Ken Worthen", title: "Coordinator", phone: "903-793-0548", email: "kenw@isaiah5511.org", city: "Texarkana, TX", type: "ABA" },
+            25: { name: "ABA Chaplaincy Commission", org: "ABA Chaplaincy Commission", rep: "Terry Romine", title: "Pastor", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+            26: { name: "ABA Chaplaincy Commission", org: "ABA Chaplaincy Commission", rep: "Terry Romine", title: "Pastor", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+            27: { name: "ABA Chaplaincy Commission", org: "ABA Chaplaincy Commission", rep: "Terry Romine", title: "Pastor", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+            28: { name: "New Road", org: "New Road", rep: "Randy Phillips", title: "Director", phone: "903-793-0548", email: "randy@newroad.org", city: "Texarkana, TX", type: "ABA" },
+            29: { name: "New Road", org: "New Road", rep: "Randy Phillips", title: "Director", phone: "903-793-0548", email: "randy@newroad.org", city: "Texarkana, TX", type: "ABA" },
+            30: { name: "SAU MBSF", org: "SAU MBSF", rep: "Collin Gregg", title: "Director", phone: "870-235-4153", email: "cgregg@saumbs.edu", city: "Magnolia, AR", type: "ABA" },
+            31: { name: "Heart Way", org: "Heart Way", rep: "Jodie Vesely", title: "Director", phone: "903-793-0548", email: "jodie@heartway.org", city: "Texarkana, AR", type: "ABA" },
+            32: { name: "ABA History and Archives", org: "ABA History and Archives", rep: "Philip Wysocki", title: "Archivist", phone: "903-793-0548", email: "pwysocki@abahistory.org", city: "Texarkana, TX", type: "ABA" },
+            33: { name: "Concord Baptist Institute", org: "Concord Baptist Institute", rep: "Deedra Clark", title: "Director", phone: "870-793-5544", email: "dclark@concordbi.edu", city: "Texarkana, AR", type: "ABA" },
+            34: { name: "Landmark Baptist Church", org: "Landmark Baptist Church", rep: "Tim Carter", title: "Pastor", phone: "812-372-5999", email: "tcarter@landmarkbc.org", city: "Columbus, IN", type: "ABA" },
+            35: { name: "Compass NYC", org: "Compass NYC", rep: "Brandon Rutherford", title: "Director", phone: "212-555-0123", email: "brandon@compassnyc.org", city: "New York, NY", type: "ABA" },
+            36: { name: "Ride For God", org: "Ride For God", rep: "Brandon Rutherford", title: "Director", phone: "212-555-0123", email: "brandon@rideforgod.org", city: "New York, NY", type: "ABA" },
+            37: { name: "The Remote Network", org: "The Remote Network", rep: "Brandon Rutherford", title: "Director", phone: "212-555-0123", email: "brandon@remotenetwork.org", city: "New York, NY", type: "ABA" },
+            38: { name: "Central States Baptist Association", org: "Central States Baptist", rep: "Ryan Miller", title: "Director", phone: "303-555-0147", email: "rmiller@csba.org", city: "Denver, CO", type: "ABA" },
+            39: { name: "Barin Field Christian Camp", org: "Barin Field Christian Camp", rep: "Curtis Morrell", title: "Director", phone: "903-793-8833", email: "cmorrell@barinfieldcamp.org", city: "Texarkana, AR", type: "ABA" },
+            40: { name: "Arkansas State Missions", org: "Arkansas State Missions", rep: "Tyler Freeman", title: "Director", phone: "501-376-4791", email: "tfreeman@arsonate.org", city: "Little Rock, AR", type: "ABA" },
+            41: { name: "Arkansas State Missions", org: "Arkansas State Missions", rep: "Tyler Freeman", title: "Director", phone: "501-376-4791", email: "tfreeman@arsonate.org", city: "Little Rock, AR", type: "ABA" },
+            42: { name: "Kings Park Korean Baptist Church", org: "Kings Park Korean Baptist", rep: "James B Bowling Jr", title: "Pastor", phone: "903-793-0548", email: "jbowling@kingspark.org", city: "Texarkana, TX", type: "ABA" },
+            43: { name: "VLMBC Missions", org: "VLMBC Missions", rep: "Caleb J. Wood", title: "Missionary", phone: "509-828-8298", email: "cwood@vlmbc.org", city: "Spokane Valley, WA", type: "ABA" },
+            44: { name: "Missionary Travel & Logistics", org: "Missionary Travel & Logistics", rep: "Jack Story", title: "Director", phone: "903-793-0548", email: "jstory@missionarytravel.org", city: "Texarkana, TX", type: "ABA" },
+            45: { name: "Langdon Street Missions", org: "Langdon Street Missions", rep: "Anissa Bowling", title: "Director", phone: "903-793-0548", email: "abowling@langdonstreet.org", city: "Texarkana, TX", type: "ABA" },
+            46: { name: "Maness Family in Argentina", org: "Maness Family in Argentina", rep: "Scott K. Maness", title: "Missionary", phone: "903-793-0548", email: "smaness@manessargentina.org", city: "Texarkana, TX", type: "ABA" },
+            47: { name: "Japanese Missions", org: "Japanese Missions", rep: "Bill Kuykendall", title: "Director", phone: "903-793-0548", email: "bkuykendall@japanmissions.org", city: "Texarkana, TX", type: "ABA" },
+            48: { name: "The Phillips in France", org: "The Phillips in France", rep: "Anthony Phillips", title: "Missionary", phone: "903-793-0548", email: "aphillips@phillipsfrance.org", city: "Texarkana, TX", type: "ABA" },
+            49: { name: "Women's Assistance Corps", org: "Women's Assistance Corps", rep: "Toni Poe", title: "Director", phone: "903-793-0548", email: "tpoe@womensassistance.org", city: "Texarkana, TX", type: "ABA" },
+            50: { name: "On Mission Family - Straders UK", org: "On Mission Family", rep: "John Strader", title: "Missionary", phone: "903-793-0548", email: "jstrader@onmissionuk.org", city: "Texarkana, TX", type: "ABA" },
+            51: { name: "F.I.S.H Ministries", org: "F.I.S.H Ministries", rep: "Heather Thompson", title: "Director", phone: "903-793-0548", email: "hthompson@fishministries.org", city: "Texarkana, TX", type: "ABA" },
+            52: { name: "F.I.S.H Ministries", org: "F.I.S.H Ministries", rep: "Heather Thompson", title: "Director", phone: "903-793-0548", email: "hthompson@fishministries.org", city: "Texarkana, TX", type: "ABA" },
+            53: { name: "Texarkana Baptist Children's Home", org: "Texarkana Baptist Children's Home", rep: "Heather Thompson", title: "Director", phone: "903-793-0548", email: "hthompson@texarkanachildren.org", city: "Texarkana, TX", type: "ABA" },
+            54: { name: "Verse By Verse Bible Commentaries", org: "Verse By Verse Bible Commentaries", rep: "Joseph L Looney II", title: "Editor", phone: "903-793-0548", email: "jlooney@versebyverse.org", city: "Texarkana, TX", type: "ABA" },
+            55: { name: "Tanzanian Missions", org: "Tanzanian Missions", rep: "Joe Hellums", title: "Missionary", phone: "903-793-0548", email: "jhellums@tanzaniamissions.org", city: "Texarkana, TX", type: "ABA" },
+            56: { name: "Harvest Panama Mission", org: "Harvest Panama Mission", rep: "Daniel Haworth", title: "Director", phone: "903-793-0548", email: "dhaworth@harvestpanama.org", city: "Texarkana, TX", type: "ABA" },
+            57: { name: "Philippine Mission Development", org: "Philippine Mission Development", rep: "Wayne Stringer", title: "Director", phone: "903-793-0548", email: "wstringer@philippinemission.org", city: "Texarkana, TX", type: "ABA" },
+            58: { name: "Ft Wayne", org: "Ft Wayne", rep: "Ft Wayne", title: "Contact", phone: "903-793-0548", email: "info@ftwayne.org", city: "Ft Wayne, IN", type: "ABA" },
+            59: { name: "Labor of Love", org: "Labor of Love", rep: "Tim Turner", title: "Director", phone: "903-793-0548", email: "tturner@laboroflove.org", city: "Texarkana, TX", type: "ABA" },
+            60: { name: "Missionary Alan & Julie Schoef", org: "Missionary Alan & Julie", rep: "Julie Schoeff", title: "Missionary", phone: "903-793-0548", email: "jschoeff@schoeffmission.org", city: "Texarkana, TX", type: "ABA" },
+            61: { name: "ABA Missions", org: "ABA Missions", rep: "Justin Coburn", title: "Director", phone: "903-280-3622", email: "jcoburn@abamissions.org", city: "Texarkana, TX", type: "ABA" },
+            62: { name: "ABA Missions", org: "ABA Missions", rep: "Justin Coburn", title: "Director", phone: "903-280-3622", email: "jcoburn@abamissions.org", city: "Texarkana, TX", type: "ABA" },
+            63: { name: "National Center for Life and Liberty", org: "National Center for Life", rep: "Rudy Holland", title: "Director", phone: "903-793-0548", email: "rholland@ncll.org", city: "Texarkana, TX", type: "ABA" },
+            64: { name: "MBSF @ Louisiana Tech", org: "MBSF @ Louisiana Tech", rep: "Trey Campbell", title: "Director", phone: "318-257-3456", email: "tcampbell@latech.edu", city: "Ruston, LA", type: "ABA" },
+            65: { name: "Missionary Baptist Seminary", org: "Missionary Baptist Seminary", rep: "Jeanie Sample", title: "Staff", phone: "501-771-0066", email: "jsample@mb-seminary.net", city: "Little Rock, AR", type: "ABA" },
+            66: { name: "Missionary Baptist Seminary", org: "Missionary Baptist Seminary", rep: "Jeanie Sample", title: "Staff", phone: "501-771-0066", email: "jsample@mb-seminary.net", city: "Little Rock, AR", type: "ABA" },
+            67: { name: "Léon, Mexico Mission Work", org: "Léon, Mexico Mission Work", rep: "Roger Copeland", title: "Missionary", phone: "903-824-7027", email: "rcopeland@leonmexico.org", city: "Texarkana, AR", type: "ABA" },
+            68: { name: "Mexican Baptist Institute", org: "Mexican Baptist Institute", rep: "Al Valladares", title: "Director", phone: "903-793-0548", email: "avalladares@mexicanbaptist.org", city: "Reynosa, Mexico", type: "ABA" },
+            69: { name: "Mexican Baptist Institute", org: "Mexican Baptist Institute", rep: "Al Valladares", title: "Director", phone: "903-793-0548", email: "avalladares@mexicanbaptist.org", city: "Reynosa, Mexico", type: "ABA" },
+            70: { name: "Outreach Bible Project", org: "Outreach Bible Project", rep: "David Hardin", title: "Coordinator", phone: "404-542-2025", email: "dhardin@outreachbibleproject.org", city: "Acworth, GA", type: "ABA" },
+            71: { name: "Jay Ross - Brazil Mission Team", org: "Jay Ross - Brazil", rep: "Dianne Moore", title: "Coordinator", phone: "903-793-0548", email: "dmoore@jayrossbrazil.org", city: "Texarkana, TX", type: "ABA" },
+            72: { name: "Iglesia Bautista Belén", org: "Iglesia Bautista Belén", rep: "Luis Vazquez", title: "Pastor", phone: "903-793-0548", email: "lvazquez@iglesiabelen.org", city: "Texarkana, TX", type: "ABA" },
+            73: { name: "Ministries in Tantoyuca", org: "Ministries in Tantoyuca", rep: "Juan Gonzalez", title: "Director", phone: "903-793-0548", email: "jgonzalez@tantoyuca.org", city: "Texarkana, TX", type: "ABA" },
+            74: { name: "Cornerstone MBC/Nanna Ministry", org: "Cornerstone MBC", rep: "John Kight", title: "Director", phone: "903-793-0548", email: "jkight@cornerstonembc.org", city: "Texarkana, TX", type: "ABA" },
+            75: { name: "Cedar Hills Baptist Youth Camp", org: "Cedar Hills Baptist Camp", rep: "Cliff Hawkins", title: "Director", phone: "903-565-4881", email: "cedarhillscamp@gmail.com", city: "Golden, TX", type: "ABA" },
+            76: { name: "Freedom Ministries", org: "Freedom Ministries", rep: "David Shockey", title: "Director", phone: "903-793-0548", email: "dshockey@freedomministries.org", city: "Texarkana, TX", type: "ABA" },
+            77: { name: "Juan Gallegos", org: "Juan Gallegos", rep: "Juan Gallegos", title: "Missionary", phone: "903-793-0548", email: "jgallegos@juangallegos.org", city: "Texarkana, TX", type: "ABA" },
+            78: { name: "Prevailing Hope Counseling Ministries", org: "Prevailing Hope Counseling", rep: "Lisa Gee", title: "Director", phone: "903-793-0548", email: "lgee@prevailinghope.org", city: "Texarkana, TX", type: "ABA" },
+            79: { name: "Visit Jacksonville and the Beaches", org: "Visit Jacksonville", rep: "Katie Quackenbush", title: "Sales Manager", phone: "904-798-9111", email: "kquackenbush@visitjacksonville.com", city: "Jacksonville, FL", type: "Partner" },
+            80: { name: "Mississippi Baptist Bible Seminary", org: "Mississippi Baptist Bible", rep: "B.J. Bennet", title: "President", phone: "601-426-6196", email: "bbennet@mbbseminary.org", city: "Laurel, MS", type: "ABA" },
+            81: { name: "Bro. Glen Knight, RIM", org: "Bro. Glen Knight, RIM", rep: "Michael F. Driggers", title: "Director", phone: "903-793-0548", email: "mdriggers@rimministries.org", city: "Texarkana, TX", type: "ABA" },
+            82: { name: "Light of Grace Baptist Mission", org: "Light of Grace Baptist", rep: "Craig Stark", title: "Director", phone: "702-555-0123", email: "cstark@lightofgrace.org", city: "Las Vegas, NV", type: "ABA" },
+            83: { name: "Texas Baptist Institute & Seminary", org: "Texas Baptist Institute", rep: "Robert Wallace", title: "Director", phone: "903-793-8833", email: "rwalllace@tbi-edu.org", city: "Texarkana, TX", type: "ABA" },
+            84: { name: "Chuck Fernandez Florida/Kenya/Uganda", org: "Chuck Fernandez", rep: "Chuck Fernandez", title: "Missionary", phone: "904-555-0123", email: "cfernandez@chuckfernandez.org", city: "Jacksonville, FL", type: "ABA" },
+            85: { name: "Tabernacle Ministries", org: "Tabernacle Ministries", rep: "Bobby Sparks", title: "Director", phone: "903-793-0548", email: "bsparks@tabernacleministries.org", city: "Texarkana, TX", type: "ABA" },
+            86: { name: "Ray of Grace", org: "Ray of Grace", rep: "Mike Wilkes", title: "Director", phone: "903-793-0548", email: "mwilkes@rayofgrace.org", city: "Texarkana, TX", type: "ABA" },
+            87: { name: "Louisiana Missionary Baptist Institute", org: "Louisiana Missionary Baptist", rep: "Mike Wilkes", title: "President", phone: "318-377-2223", email: "mwilkes@lmbis.edu", city: "Shreveport, LA", type: "ABA" },
+            88: { name: "HPB Publishing", org: "HPB Publishing", rep: "James Sumrall", title: "Manager", phone: "903-793-0548", email: "sumrall@hpbpub.org", city: "Texarkana, TX", type: "ABA" },
+            89: { name: "HPB Publishing", org: "HPB Publishing", rep: "James Sumrall", title: "Manager", phone: "903-793-0548", email: "sumrall@hpbpub.org", city: "Texarkana, TX", type: "ABA" },
+            90: { name: "WWLMS", org: "World-Wide Literature & Supplies", rep: "Joel Campbell", title: "Manager", phone: "903-793-0548", email: "joel@wwlms.org", city: "Texarkana, TX", type: "ABA" },
+            91: { name: "Utah Missions", org: "Utah Missions", rep: "Daniel Teague", title: "Missionary", phone: "903-793-0548", email: "dteague@utahmissions.org", city: "Texarkana, TX", type: "ABA" },
+            92: { name: "Baptist Book Store", org: "Baptist Book Store", rep: "John Oswald", title: "Manager", phone: "903-793-0548", email: "joswald@baptistbookstore.org", city: "Texarkana, TX", type: "ABA" },
+            93: { name: "Bogard Press Bible Challenge", org: "Bogard Press", rep: "John Oswald", title: "Manager", phone: "903-793-0548", email: "john.oswald@bogardpress.org", city: "Texarkana, TX", type: "ABA" },
+            94: { name: "Macedonian Missionary Service", org: "Macedonian Missionary Service", rep: "Joseph Young", title: "Director", phone: "903-793-0548", email: "jyoung@macedonianservice.org", city: "Texarkana, TX", type: "ABA" },
+            95: { name: "Macedonian Missionary Service", org: "Macedonian Missionary Service", rep: "Joseph Young", title: "Director", phone: "903-793-0548", email: "jyoung@macedonianservice.org", city: "Texarkana, TX", type: "ABA" },
+            96: { name: "Missionary Training Ministry", org: "Missionary Training Ministry", rep: "Chase Reynolds", title: "Director", phone: "903-793-0548", email: "creynolds@missionarytraining.org", city: "Texarkana, TX", type: "ABA" },
+            97: { name: "Lifeline Baptist Missionaries", org: "Lifeline Baptist Missionaries", rep: "David P. Smith", title: "Director", phone: "903-793-0548", email: "dsmith@lifelinebaptist.org", city: "Texarkana, TX", type: "ABA" },
+            98: { name: "Calvary Baptist Church Foristell", org: "Calvary Baptist Church", rep: "Kurt Neeley", title: "Pastor", phone: "636-555-0123", email: "kneeley@calvarybaptistforistell.org", city: "Foristell, MO", type: "ABA" },
+            99: { name: "Matthew & Sarah Thompson", org: "Sublett Road Baptist Church", rep: "Matthew Thompson", title: "Contact", phone: "903-793-0548", email: "mthompson@subletroadbc.org", city: "Arlington, TX", type: "ABA" },
+            100: { name: "Texas Baptist Institute & Seminary", org: "Texas Baptist Institute", rep: "Robert Wallace", title: "Director", phone: "903-793-8833", email: "rwalllace@tbi-edu.org", city: "Texarkana, TX", type: "ABA" },
+            101: { name: "Morrow Music and Books", org: "Morrow Music and Books", rep: "Donald G. Morrow", title: "Owner", phone: "903-793-0548", email: "dmorrow@morrowmusicbooks.org", city: "Texarkana, TX", type: "ABA" },
+            102: { name: "Copenhagen Bethel Missionary Baptist", org: "Copenhagen Bethel Baptist", rep: "Gerry O Calba", title: "Pastor", phone: "903-793-0548", email: "gocalba@bethelbaptist.org", city: "Texarkana, TX", type: "ABA" },
+            103: { name: "Second Baptist Missions", org: "Second Baptist Missions", rep: "Daniel Aleman", title: "Contact", phone: "903-793-0548", email: "daleman@secondbaptist.org", city: "Texarkana, TX", type: "ABA" },
+            104: { name: "Second Baptist Missions", org: "Second Baptist Missions", rep: "Daniel Aleman", title: "Contact", phone: "903-793-0548", email: "daleman@secondbaptist.org", city: "Texarkana, TX", type: "ABA" },
+            105: { name: "Jenna Summers", org: "Jenna Summers Ministries", rep: "Jenna Summers", title: "Author", phone: "903-793-0548", email: "jenna@jennasummers.org", city: "Texarkana, TX", type: "ABA" },
+            106: { name: "Faith Baptist Church", org: "Faith Baptist Church", rep: "Todd Dornan", title: "Pastor", phone: "903-793-0548", email: "tdornan@faithbc.org", city: "Texarkana, TX", type: "ABA" },
+            107: { name: "Restoration Hill Church", org: "Restoration Hill Church", rep: "Todd Haneline", title: "Pastor", phone: "903-793-0548", email: "thaneline@restorationhill.org", city: "Texarkana, TX", type: "ABA" },
+            108: { name: "College Station Baptist Church", org: "College Station Baptist", rep: "James Williams", title: "Pastor", phone: "979-555-0123", email: "jwilliams@collegestation.org", city: "College Station, TX", type: "ABA" },
+            109: { name: "Missionary TECH Team Advantage", org: "Missionary TECH Team", rep: "Kelvin Gunnells", title: "Director", phone: "903-793-0548", email: "kgunnells@missionarytech.org", city: "Texarkana, TX", type: "ABA" },
+            110: { name: "Life and Freedom", org: "Life and Freedom", rep: "Joel Dillahunty", title: "Director", phone: "903-793-0548", email: "jdillahunty@lifeaffreedom.org", city: "Texarkana, TX", type: "ABA" },
+            111: { name: "Interstate Mission Development", org: "Interstate Mission Dev", rep: "Tim Ward", title: "Director", phone: "903-793-0548", email: "tward@interstatmission.org", city: "Texarkana, TX", type: "ABA" },
+            112: { name: "James Greene & Associates", org: "James Greene & Assoc", rep: "Madison Johnson", title: "Associate", phone: "903-793-0548", email: "mjohnson@jamesgreene.org", city: "Texarkana, TX", type: "ABA" },
+            113: { name: "Cornerstone Baptist Church", org: "Cornerstone Baptist", rep: "Ronald Howell", title: "Pastor", phone: "903-793-0548", email: "rhowell@cornerstonebaptist.org", city: "Texarkana, TX", type: "ABA" },
+            114: { name: "Emmaus Baptist College", org: "Emmaus Baptist College", rep: "Casey McNair", title: "President", phone: "214-333-9999", email: "cmcnair@emmaus.edu", city: "Arlington, TX", type: "ABA" },
+            115: { name: "Emmaus Baptist College", org: "Emmaus Baptist College", rep: "Casey McNair", title: "President", phone: "214-333-9999", email: "cmcnair@emmaus.edu", city: "Arlington, TX", type: "ABA" },
+            116: { name: "Mattingly Family", org: "Mattingly Family", rep: "Casey McNair", title: "Contact", phone: "903-793-0548", email: "cmcnair@mattinglyfamily.org", city: "Texarkana, TX", type: "ABA" },
+            117: { name: "Westwood MBC", org: "Westwood MBC", rep: "Casey McNair", title: "Contact", phone: "903-793-0548", email: "cmcnair@westwoodmbc.org", city: "Texarkana, TX", type: "ABA" },
+            118: { name: "Westwood MBC", org: "Westwood MBC", rep: "Casey McNair", title: "Contact", phone: "903-793-0548", email: "cmcnair@westwoodmbc.org", city: "Texarkana, TX", type: "ABA" },
+            119: { name: "ABA Disaster Relief", org: "ABA Disaster Relief", rep: "Casey McNair", title: "Director", phone: "903-793-0548", email: "cmcnair@abadisasterrelief.org", city: "Texarkana, TX", type: "ABA" },
+            120: { name: "ABA Disaster Relief", org: "ABA Disaster Relief", rep: "Casey McNair", title: "Director", phone: "903-793-0548", email: "cmcnair@abadisasterrelief.org", city: "Texarkana, TX", type: "ABA" },
+            121: { name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", title: "Manager", phone: "903-793-0548", email: "john.oswald@bogardpress.org", city: "Texarkana, TX", type: "ABA" },
+            122: { name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", title: "Manager", phone: "903-793-0548", email: "john.oswald@bogardpress.org", city: "Texarkana, TX", type: "ABA" },
+            123: { name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", title: "Manager", phone: "903-793-0548", email: "john.oswald@bogardpress.org", city: "Texarkana, TX", type: "ABA" }
+        };
+
+        let currentSearch = '';
+
+        function createBooth(boothNum) {
+            const ex = exhibitors[boothNum];
+            const booth = document.createElement('div');
+            booth.className = `booth ${!ex ? 'empty' : (ex.type === 'Partner' ? 'partner' : 'occupied')}`;
+
+            if (currentSearch) {
+                const matches = boothNum.toString().includes(currentSearch) || 
+                              (ex && (ex.name.toLowerCase().includes(currentSearch) || 
+                                     ex.org.toLowerCase().includes(currentSearch)));
+                if (matches) booth.classList.add('highlighted');
+            }
+
+            const shortName = ex ? ex.name.split(' ').slice(0, 2).join(' ') : '';
+            booth.innerHTML = `<div class="booth-num">${boothNum}</div><div class="booth-name">${shortName}</div>`;
+            booth.onclick = () => selectBooth(boothNum, ex);
+            return booth;
+        }
+
+        function renderHall() {
+            const hall = document.getElementById('hallLayout');
+            hall.innerHTML = '';
+
+            // Match PDF layout exactly
+            const layout = [
+                // Row 1
+                [107, 106, 77, 76, 47, 46, 17, 16],
+                // Row 2
+                [108, 105, 78, 75, 48, 45, 18, 15],
+                // Row 3
+                [109, 104, 79, 74, 49, 44, 19, 14],
+                // Row 4
+                [110, 103, 80, 73, 50, 43, 20, 13],
+                // Row 5
+                [111, 102, 81, 72, 51, 42, 21, 12],
+                // Row 6
+                [112, 101, 82, 71, 52, 41, 22, 11],
+                // Row 7
+                [113, 100, 83, 70, 53, 40, 23, 10],
+                // Row 8 - GAP
+                [114, null, null, null, null, null, null, 9],
+                // Row 9
+                [115, 99, 84, 69, 54, 39, 24, 8],
+                // Row 10
+                [116, 98, 85, 68, 55, 38, 25, 7],
+                // Row 11
+                [117, 97, 86, 67, 56, 37, 26, 6],
+                // Row 12
+                [118, 96, 87, 66, 57, 36, 27, 5],
+                // Row 13
+                [119, 95, 88, 65, 58, 35, 28, 4],
+                // Row 14
+                [120, 94, 89, 64, 59, 34, 29, 3],
+                // Row 15
+                [121, 93, 90, 63, 60, 33, 30, 2],
+                // Row 16
+                [122, 92, 91, 62, 61, 32, 31, 1],
+                // Row 17
+                [123, null, null, null, null, null, null, null]
+            ];
+
+            // Create grid of rows
+            const rowsContainer = document.createElement('div');
+            rowsContainer.style.display = 'flex';
+            rowsContainer.style.flexDirection = 'column';
+            rowsContainer.style.gap = '8px';
+
+            layout.forEach(boothRow => {
+                const row = document.createElement('div');
+                row.style.display = 'flex';
+                row.style.gap = '15px';
+                row.style.justifyContent = 'center';
+
+                boothRow.forEach(boothNum => {
+                    if (boothNum === null) {
+                        const spacer = document.createElement('div');
+                        spacer.style.width = '70px';
+                        spacer.style.height = '70px';
+                        row.appendChild(spacer);
+                    } else {
+                        row.appendChild(createBooth(boothNum));
+                    }
+                });
+
+                rowsContainer.appendChild(row);
+            });
+
+            hall.appendChild(rowsContainer);
+        }
+
+        function selectBooth(boothNum, ex) {
+            const details = document.getElementById('boothDetails');
+            if (!ex) {
+                details.innerHTML = `<div class="no-selection">Booth ${boothNum} Available</div>`;
+                return;
+            }
+
+            details.innerHTML = `
+                <h4>Booth ${boothNum}</h4>
+                <div class="info-row"><span class="info-label">Org:</span><span class="info-value">${ex.org}</span></div>
+                <div class="info-row"><span class="info-label">Type:</span><span class="info-value"><strong>${ex.type}</strong></span></div>
+                <div class="info-row"><span class="info-label">Contact:</span><span class="info-value">${ex.rep || 'N/A'}</span></div>
+                <div class="info-row"><span class="info-label">Phone:</span><span class="info-value"><a href="tel:${ex.phone}">${ex.phone || 'N/A'}</a></span></div>
+                <div class="info-row"><span class="info-label">Email:</span><span class="info-value"><a href="mailto:${ex.email}">${ex.email || 'N/A'}</a></span></div>
+            `;
+        }
+
+        function clearSearch() {
+            document.getElementById('boothSearch').value = '';
+            currentSearch = '';
+            renderHall();
+            document.getElementById('boothDetails').innerHTML = '<div class="no-selection">Click a booth to view details</div>';
+        }
+
+        document.getElementById('boothSearch').addEventListener('input', function(e) {
+            currentSearch = e.target.value.toLowerCase();
+            renderHall();
+        });
+
+        renderHall();
+    </script>
+
+    <script>
+        // Register Service Worker for offline support
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:application/javascript,' + encodeURIComponent(`
+                self.addEventListener('install', event => {
+                    console.log('Service Worker installed');
+                    self.skipWaiting();
+                });
+
+                self.addEventListener('activate', event => {
+                    console.log('Service Worker activated');
+                    event.waitUntil(clients.claim());
+                });
+
+                self.addEventListener('fetch', event => {
+                    // Return the request if it's a network request
+                    event.respondWith(
+                        fetch(event.request).catch(() => {
+                            // Return cached response or offline page
+                            return caches.match(event.request);
+                        })
+                    );
+                });
+            `)).catch(err => console.log('ServiceWorker registration failed: ', err));
+        }
+
+        // Add to home screen prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+    </script>
+
+</body></html>
