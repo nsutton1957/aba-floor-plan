@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+Here's the complete code with clickable booth details:
+html<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -188,7 +189,7 @@
             div.innerHTML = `<div class="booth-num">${num}</div><div class="booth-name">${shortName}</div>`;
             div.onclick = () => {
                 if (ex) {
-                    alert(`Booth ${num}\n\nOrganization: ${ex.org}\nSign Name: ${ex.signName}\nContact: ${ex.rep}\nPhone: ${ex.phone}\nEmail: ${ex.email}\nType: ${ex.type}`);
+                    alert(`Booth ${num}\n\nSign Name: ${ex.signName}\nOrganization: ${ex.org}\nContact: ${ex.rep}\nPhone: ${ex.phone}\nEmail: ${ex.email}\nType: ${ex.type}`);
                 } else {
                     alert(`Booth ${num} - Available`);
                 }
