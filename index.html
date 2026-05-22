@@ -519,7 +519,7 @@
                 if (matches) booth.classList.add('highlighted');
             }
 
-            const shortName = ex ? ex.name.split(' ').slice(0, 2).join(' ') : '';
+            const shortName = ex ? ex.signname.split(' ').slice(0, 2).join(' ') : '';
             booth.innerHTML = `<div class="booth-num">${boothNum}</div><div class="booth-name">${shortName}</div>`;
             booth.onclick = () => selectBooth(boothNum, ex);
             return booth;
