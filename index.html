@@ -8,11 +8,11 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 10px; }
         .container { max-width: 100%; margin: 0 auto; }
-        .wrapper { }
+        .wrapper { overflow-x: auto; }
         .header { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
         .header h1 { color: #333; font-size: 1.5em; margin-bottom: 5px; }
         .header p { color: #666; font-size: 0.8em; }
-        .floor-plan { background: white; padding: 10px; padding-left: 15px; border-radius: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .floor-plan { background: white; padding: 10px; border-radius: 8px; }
         .rows-container { display: flex; flex-direction: column; gap: 5px; padding-left: 10px; }
         .row { display: flex; gap: 5px; flex-direction: row; }
         .booth { width: 60px; height: 60px; border: 1px solid #999; padding: 2px; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-size: 0.6em; flex-shrink: 0; cursor: pointer; }
