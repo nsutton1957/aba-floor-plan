@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABA 2026 Exhibit Floor Plan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 10px; }
+        .container { max-width: 100%; margin: 0 auto; }
+        .header { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
+        .header h1 { color: #333; font-size: 1.5em; margin-bottom: 5px; }
+        .header p { color: #666; font-size: 0.8em; }
+        .floor-plan { background: white; padding: 10px; border-radius: 8px; overflow-x: auto; }
+        .rows-container { display: flex; flex-direction: column; gap: 5px; }
+        .row { display: flex; gap: 5px; justify-content: center; }
+        .booth { 
+            width: 50px; 
+            height: 50px; 
+            border: 1px solid #999; 
+            padding: 2px; 
+            background: white; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            font-size: 0.6em;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .booth-num { font-weight: bold; font-size: 1em; }
+        .booth-name { font-size: 0.5em; color: #666; }
+        .booth.aba { background: #e3f2fd; border-color: #1976d2; }
+        .booth.partner { background: #fff3e0; border-color: #f57c00; }
+        .booth.empty { background: #f5f5f5; border-color: #ccc; }
+        .spacer { width: 50px; height: 50px; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HALL A</h1>
+            <p>2026 ABA 100th Messenger Assembly</p>
+        </div>
+        <div class="floor-plan">
+            <div class="rows-container" id="layout"></div>
+        </div>
+    </div>
+
+    <script>
+        const exhibitors = {
+    1: { signName: "International Christian Publishers", name: "International Christian Publishers", org: "International Christian Publishers", rep: "Bill Johnson", phone: "903-278-2648", email: "billjohnson@icplit.org", city: "Texarkana, AR  71854", type: "ABA" },
+    2: { signName: "International Christian Publishers", name: "International Christian Publishers", org: "International Christian Publishers", rep: "Bill Johnson", phone: "903-278-2648", email: "billjohnson@icplit.org", city: "Texarkana, AR  71854", type: "ABA" },
+    3: { signName: "Faith Baptist Church/Sterlington Missions", name: "Promise Land MBC", org: "Promise Land MBC", rep: "Kevin Hutcheson", phone: "863-308-5546", email: "khutch324@gmail.com", city: "Sterlington, LA", type: "ABA" },
+    4: { signName: "The Burdettes at Monterey, TN", name: "Hopewell Baptist Church", org: "Hopewell Baptist Church", rep: "Terry Romine", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+    5: { signName: "Brook Besor Baptist Church", name: "Brook Besor Baptist Church", org: "Brook Besor Baptist Church", rep: "Jerry Baker", phone: "432-770-2302", email: "", city: "", type: "ABA" },
+    6: { signName: "Discover Green Bay", name: "Discover Green Bay", org: "Discover Green Bay", rep: "Michael Cherek", phone: "920-770-1470", email: "michael@greenbay.com", city: "Green Bay, WI", type: "Partner" },
+    7: { signName: "Faith Bible Institute", name: "Faith Bible Institute", org: "Faith Bible Institute", rep: "Wes Pleasants", phone: "318-235-1441", email: "wes@fbiclass.com", city: "Monroe, LA", type: "ABA" },
+    8: { signName: "Faith Bible Institute", name: "Faith Bible Institute", org: "Faith Bible Institute", rep: "Wes Pleasants", phone: "318-235-1441", email: "wes@fbiclass.com", city: "Monroe, LA", type: "ABA" },
+    9: { signName: "Faith Bible Institute", name: "Faith Bible Institute", org: "Faith Bible Institute", rep: "Wes Pleasants", phone: "318-235-1441", email: "wes@fbiclass.com", city: "Monroe, LA", type: "ABA" },
+    10: { signName: "Ukraine Missions, Pearl MBC", name: "Pearl MBC", org: "Pearl MBC", rep: "Tony C. Hansen", phone: "812-372-5999", email: "tonerlandmark@aol.com", city: "Columbus, IN", type: "ABA" },
+    11: { signName: "Broken Spokes Motorcycle Ministry", name: "Broken Spokes", org: "Broken Spokes", rep: "Herbert S. Salter", phone: "360-434-6871", email: "tsalter2081@msn.com", city: "Bremerton, WA", type: "ABA" },
+    12: { signName: "Michio Kawahara, Yokohama, Japan", name: "Unity MBC", org: "Unity MBC", rep: "Mark Harris", phone: "501-831-2105", email: "dean@mb-seminary.net", city: "Little Rock, AR", type: "ABA" },
+    13: { signName: "Seeing Truth Ministry", name: "Wellston MBC", org: "Wellston MBC", rep: "Ken Sibley", phone: "859-321-6634", email: "seeingtruth@gmail.com", city: "Wellston, OK", type: "ABA" },
+    14: { signName: "ABA Credit Union", name: "American Baptist Association Credit Union", org: "American Baptist Association Credit Union", rep: "Julie Knight", phone: "832-465-1415", email: "aba@abacu.org", city: "Angleton, TX", type: "ABA" },
+    15: { signName: "Crazy Faith Designs", name: "Crazy Faith Designs", org: "Crazy Faith Designs", rep: "Chad Helton", phone: "985-750-7723", email: "chad@crazyfaithdesigns.net", city: "Mt. Enterprise, TX", type: "ABA" },
+    16: { signName: "Agape Mission Baptist Church", name: "Agape Mission Baptist Church", org: "Agape Mission Baptist Church", rep: "Thang Sian & Nate Lowe", phone: "616-272-2057", email: "nateslowe@gmail.com", city: "Kentwood, MI", type: "ABA" },
+    17: { signName: "Faith Missionary Baptist Church", name: "Faith Missionary Baptist Church", org: "Faith Missionary Baptist Church", rep: "James Shields", phone: "903-812-4148", email: "familyofshields@gmail.com", city: "Wasilla, AK", type: "ABA" },
+    18: { signName: "Global Surge", name: "Global Surge", org: "Global Surge", rep: "Melissa Crawford", phone: "785-414-8614", email: "melissa@globalsurge.org", city: "Pueblo, CO", type: "Partner" },
+    19: { signName: "LBU Global", name: "LBU Global", org: "LBU Global", rep: "S. McLean Jones", phone: "318-686-2360", email: "mjones@lbu.edu", city: "Shreveport, LA", type: "Partner" },
+    20: { signName: "Gospelflight", name: "Gospelflight Aviation", org: "Gospelflight Aviation", rep: "Randall Gillespie", phone: "407-279-1931", email: "randall@gospelflight.org", city: "Catoosa, OK", type: "ABA" },
+    21: { signName: "Gulf Coast Baptist College", name: "Gulf Coast Baptist College", org: "Gulf Coast Baptist College", rep: "Herman Strickland", phone: "850-324-6555", email: "hstrickland@gcbc.edu", city: "Pensacola, FL", type: "ABA" },
+    22: { signName: "Gulf Coast Baptist College", name: "Gulf Coast Baptist College", org: "Gulf Coast Baptist College", rep: "Herman Strickland", phone: "850-324-6555", email: "hstrickland@gcbc.edu", city: "Pensacola, FL", type: "ABA" },
+    23: { signName: "Lighthouse Electrical Ministries", name: "Lighthouse Electrical", org: "Lighthouse Electrical", rep: "Kevin Mattox", phone: "616-460-3989", email: "kmattox@lighthouselec.com", city: "Texarkana, TX", type: "ABA" },
+    24: { signName: "Victory Missionary Baptist Church", name: "Victory Missionary Baptist Church", org: "Victory Missionary Baptist Church", rep: "Ken Worthen", phone: "479-857-1011", email: "kenw@victorybc.org", city: "", type: "ABA" },
+    25: { signName: "ABA Chaplaincy Commission", name: "ABA Chaplaincy Commission", org: "ABA Chaplaincy Commission", rep: "Terry Romine", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+    26: { signName: "ABA Chaplaincy Commission", name: "ABA Chaplaincy Commission", org: "ABA Chaplaincy Commission", rep: "Terry Romine", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+    27: { signName: "ABA Chaplaincy Commission", name: "ABA Chaplaincy Commission", org: "ABA Chaplaincy Commission", rep: "Terry Romine", phone: "931-257-8282", email: "terry.e.romine@gmail.com", city: "Clarksville, TN", type: "ABA" },
+    28: { signName: "New Road Baptist Church", name: "New Road Baptist Church", org: "New Road Baptist Church", rep: "Randy Phillips", phone: "740-441-7843", email: "randy@newroadbc.org", city: "", type: "ABA" },
+    29: { signName: "New Road Baptist Church", name: "New Road Baptist Church", org: "New Road Baptist Church", rep: "Randy Phillips", phone: "740-441-7843", email: "randy@newroadbc.org", city: "", type: "ABA" },
+    30: { signName: "SAU MBSF", name: "SAU MBSF", org: "SAU MBSF", rep: "Collin Gregg", phone: "918-565-2739", email: "cgregg@saumbs.edu", city: "Magnolia, AR", type: "ABA" },
+    31: { signName: "Heart Way", name: "Heart Way", org: "Heart Way", rep: "Jodie Vesely", phone: "979-327-6086", email: "jodie@heartway.org", city: "", type: "ABA" },
+    32: { signName: "History & Archive Committee", name: "History & Archive Committee", org: "History & Archive Committee", rep: "Philip Wysocki", phone: "231-640-0401", email: "pwysocki@abahistory.org", city: "", type: "ABA" },
+    33: { signName: "Concord Baptist Institute", name: "Concord Baptist Institute", org: "Concord Baptist Institute", rep: "Deedra Clark", phone: "405-802-2612", email: "dclark@concordbi.edu", city: "", type: "ABA" },
+    34: { signName: "Landmark Baptist Church", name: "Landmark Baptist Church", org: "Landmark Baptist Church", rep: "Tim Carter", phone: "501-605-7600", email: "tcarter@landmarkbc.org", city: "", type: "ABA" },
+    35: { signName: "Calvary Missionary Baptist Church", name: "Calvary Missionary Baptist Church", org: "Calvary Missionary Baptist Church", rep: "Brandon Rutherford", phone: "813-716-9865", email: "brandon@calvaryorlando.org", city: "", type: "ABA" },
+    36: { signName: "Calvary Missionary Baptist Church", name: "Calvary Missionary Baptist Church", org: "Calvary Missionary Baptist Church", rep: "Brandon Rutherford", phone: "813-716-9865", email: "brandon@calvaryorlando.org", city: "", type: "ABA" },
+    37: { signName: "Calvary Missionary Baptist Church", name: "Calvary Missionary Baptist Church", org: "Calvary Missionary Baptist Church", rep: "Brandon Rutherford", phone: "813-716-9865", email: "brandon@calvaryorlando.org", city: "", type: "ABA" },
+    38: { signName: "First Baptist Church of Northern Heights", name: "First Baptist Church of Northern Heights", org: "First Baptist Church of Northern Heights", rep: "Ryan Miller", phone: "816-876-5405", email: "rmiller@fbcnh.org", city: "", type: "ABA" },
+    39: { signName: "Barin Field Christian Camp", name: "Barin Field Christian Camp", org: "Barin Field Christian Camp", rep: "Curtis Morrell", phone: "256-668-6140", email: "cmorrell@barinfieldcamp.org", city: "", type: "ABA" },
+    40: { signName: "Arkansas State Missions", name: "Arkansas State Missions", org: "Arkansas State Missions", rep: "Tyler Freeman", phone: "870-403-6768", email: "tfreeman@arsonate.org", city: "", type: "ABA" },
+    41: { signName: "Arkansas State Missions", name: "Arkansas State Missions", org: "Arkansas State Missions", rep: "Tyler Freeman", phone: "870-403-6768", email: "tfreeman@arsonate.org", city: "", type: "ABA" },
+    42: { signName: "Kings Park Korean Baptist Church", name: "Kings Park Korean Baptist Church", org: "Kings Park Korean Baptist Church", rep: "James B Bowling Jr", phone: "703-309-6364", email: "jbowling@kingsparkbc.org", city: "", type: "ABA" },
+    43: { signName: "Valley Landmark Missionary Baptist Church", name: "Valley Landmark Missionary Baptist Church", org: "Valley Landmark Missionary Baptist Church", rep: "Caleb J. Wood", phone: "509-926-9564", email: "cwood@vlmbc.org", city: "", type: "ABA" },
+    44: { signName: "Missionary Travel & Logistics", name: "Missionary Travel & Logistics", org: "Missionary Travel & Logistics", rep: "Jack Story", phone: "765-461-4672", email: "jstory@missionarytravel.org", city: "", type: "ABA" },
+    45: { signName: "Langdon Street Baptist Church", name: "Langdon Street Baptist Church", org: "Langdon Street Baptist Church", rep: "Anissa Bowling", phone: "606-425-4321", email: "abowling@langdonstreet.org", city: "", type: "ABA" },
+    46: { signName: "Nevill's Chapel Baptist Church", name: "Nevill's Chapel Baptist Church", org: "Nevill's Chapel Baptist Church", rep: "Scott K. Maness", phone: "903-572-5664", email: "smaness@nevillschapel.org", city: "", type: "ABA" },
+    47: { signName: "Calvary Baptist Church", name: "Calvary Baptist Church", org: "Calvary Baptist Church", rep: "Bill Kuykendall", phone: "903-918-5100", email: "bkuykendall@calvarybc.org", city: "", type: "ABA" },
+    48: { signName: "Calvary MBC - Orlando", name: "Calvary MBC - Orlando", org: "Calvary MBC - Orlando", rep: "Anthony Phillips", phone: "407-380-3626", email: "aphillips@calvaryorlando.org", city: "", type: "ABA" },
+    49: { signName: "Taylor's Chapel MBC", name: "Taylor's Chapel MBC", org: "Taylor's Chapel MBC", rep: "Toni Poe", phone: "870-403-4465", email: "tpoe@taylorschapel.org", city: "", type: "ABA" },
+    50: { signName: "Horizon Baptist Church", name: "Horizon Baptist Church", org: "Horizon Baptist Church", rep: "John Strader", phone: "281-818-9040", email: "jstrader@horizonbc.org", city: "", type: "ABA" },
+    51: { signName: "Texarkana Baptist Children's Home", name: "Texarkana Baptist Children's Home", org: "Texarkana Baptist Children's Home", rep: "Heather Thompson", phone: "870-774-8214", email: "hthompson@texarkanachildren.org", city: "", type: "ABA" },
+    52: { signName: "Texarkana Baptist Children's Home", name: "Texarkana Baptist Children's Home", org: "Texarkana Baptist Children's Home", rep: "Heather Thompson", phone: "870-774-8214", email: "hthompson@texarkanachildren.org", city: "", type: "ABA" },
+    53: { signName: "Texarkana Baptist Children's Home", name: "Texarkana Baptist Children's Home", org: "Texarkana Baptist Children's Home", rep: "Heather Thompson", phone: "870-774-8214", email: "hthompson@texarkanachildren.org", city: "", type: "ABA" },
+    54: { signName: "Joseph L Looney II", name: "Joseph L Looney II", org: "Joseph L Looney II", rep: "Joseph L Looney II", phone: "903-949-8736", email: "jlooney@versebyverse.org", city: "", type: "ABA" },
+    55: { signName: "Tanzanian Missions", name: "Tanzanian Missions", org: "Tanzanian Missions", rep: "Joe Hellums", phone: "501-351-2345", email: "jhellums@tanzaniamissions.org", city: "", type: "ABA" },
+    56: { signName: "Harvest Oaks Church", name: "Harvest Oaks Church", org: "Harvest Oaks Church", rep: "Daniel Haworth", phone: "469-545-5740", email: "dhaworth@harvestoaks.org", city: "", type: "ABA" },
+    57: { signName: "Philippine Mission Development", name: "Philippine Mission Development", org: "Philippine Mission Development", rep: "Wayne Stringer", phone: "903-277-3590", email: "wstringer@philippinemission.org", city: "", type: "ABA" },
+    58: { signName: "Visit Fort Wayne", name: "Visit Fort Wayne", org: "Visit Fort Wayne", rep: "Josie O'Donnell", phone: "260-415-6301", email: "josie@visitfortwayne.com", city: "Fort Wayne, IN", type: "Partner" },
+    59: { signName: "Labor of Love", name: "Labor of Love", org: "Labor of Love", rep: "Tim Turner", phone: "903-841-2586", email: "cindyturner031865@gmail.com", city: "", type: "ABA" },
+    60: { signName: "Alan & Julie Schoeff", name: "Alan & Julie Schoeff", org: "Alan & Julie Schoeff", rep: "Julie Schoeff", phone: "812-603-6233", email: "eyesonchrist@outlook.com", city: "", type: "ABA" },
+    61: { signName: "ABA Missions", name: "ABA Missions", org: "ABA Missions", rep: "Justin Coburn", phone: "903-280-3622", email: "jcoburn@abamissions.org", city: "Texarkana, TX", type: "ABA" },
+    62: { signName: "ABA Missions", name: "ABA Missions", org: "ABA Missions", rep: "Justin Coburn", phone: "903-280-3622", email: "jcoburn@abamissions.org", city: "Texarkana, TX", type: "ABA" },
+    63: { signName: "National Center for Life and Liberty", name: "National Center for Life and Liberty", org: "National Center for Life and Liberty", rep: "Rudy Holland", phone: "727-619-4417", email: "rholland@ncll.org", city: "", type: "ABA" },
+    64: { signName: "MBSF @ Louisiana Tech", name: "MBSF @ Louisiana Tech", org: "MBSF @ Louisiana Tech", rep: "Trey Campbell", phone: "870-940-2061", email: "tcampbell@latech.edu", city: "", type: "ABA" },
+    65: { signName: "Missionary Baptist Seminary", name: "Missionary Baptist Seminary", org: "Missionary Baptist Seminary", rep: "Jeanie Sample", phone: "501-455-4588", email: "jsample@mb-seminary.net", city: "", type: "ABA" },
+    66: { signName: "Missionary Baptist Seminary", name: "Missionary Baptist Seminary", org: "Missionary Baptist Seminary", rep: "Jeanie Sample", phone: "501-455-4588", email: "jsample@mb-seminary.net", city: "", type: "ABA" },
+    67: { signName: "Northern Hills Baptist Church", name: "Northern Hills Baptist Church", org: "Northern Hills Baptist Church", rep: "Roger Copeland", phone: "903-824-7027", email: "rcopeland@nhbc.org", city: "", type: "ABA" },
+    68: { signName: "Mexican Baptist Institute", name: "Mexican Baptist Institute", org: "Mexican Baptist Institute", rep: "Al Valladares", phone: "956-499-5566", email: "avalladares@mexicanbaptist.org", city: "", type: "ABA" },
+    69: { signName: "Mexican Baptist Institute", name: "Mexican Baptist Institute", org: "Mexican Baptist Institute", rep: "Al Valladares", phone: "956-499-5566", email: "avalladares@mexicanbaptist.org", city: "", type: "ABA" },
+    70: { signName: "Hillcrest Baptist Church", name: "Hillcrest Baptist Church", org: "Hillcrest Baptist Church", rep: "David Hardin", phone: "770-906-7795", email: "dhardin@hillcrestbc.org", city: "", type: "ABA" },
+    71: { signName: "Hillcrest Baptist Church", name: "Hillcrest Baptist Church", org: "Hillcrest Baptist Church", rep: "Dianne Moore", phone: "404-660-6431", email: "dmoore@hillcrestbc.org", city: "", type: "ABA" },
+    72: { signName: "Bethlehem MBC", name: "Bethlehem MBC", org: "Bethlehem MBC", rep: "Luis Vazquez", phone: "479-264-8035", email: "lvazquez@bethlehemmbc.org", city: "", type: "ABA" },
+    73: { signName: "30th Avenue Baptist Church", name: "30th Avenue Baptist Church", org: "30th Avenue Baptist Church", rep: "Juan Gonzalez", phone: "210-419-7176", email: "jgonzalez@30thave.org", city: "", type: "ABA" },
+    74: { signName: "Cornerstone MBC", name: "Cornerstone MBC", org: "Cornerstone MBC", rep: "John Kight", phone: "575-914-3816", email: "jkight@cornerstonembc.org", city: "", type: "ABA" },
+    75: { signName: "Cedar Hills Baptist Youth Camp", name: "Cedar Hills Baptist Youth Camp", org: "Cedar Hills Baptist Youth Camp", rep: "Cliff Hawkins", phone: "580-467-2941", email: "cedarhillscamp@gmail.com", city: "", type: "ABA" },
+    76: { signName: "Freedom Ministries", name: "Freedom Ministries", org: "Freedom Ministries", rep: "David Shockey", phone: "501-276-8183", email: "dshockey@freedomministries.org", city: "", type: "ABA" },
+    77: { signName: "Central Baptist Seminary", name: "Central Baptist Seminary", org: "Central Baptist Seminary", rep: "Juan Gallegos", phone: "830-313-2363", email: "jgallegos@cbs.edu", city: "", type: "ABA" },
+    78: { signName: "First Landmark MBC", name: "First Landmark MBC", org: "First Landmark MBC", rep: "Lisa Gee", phone: "574-850-6221", email: "lgee@firstlandmark.org", city: "", type: "ABA" },
+    79: { signName: "Visit Jacksonville and the Beaches", name: "Visit Jacksonville", org: "Visit Jacksonville", rep: "Katie Quackenbush", phone: "904-483-1029", email: "kquackenbush@visitjacksonville.com", city: "Jacksonville, FL", type: "Partner" },
+    80: { signName: "Missionary Baptist Bible Seminary", name: "Missionary Baptist Bible Seminary", org: "Missionary Baptist Bible Seminary", rep: "B.J. Bennet", phone: "601-966-1627", email: "bbennet@mbbseminary.org", city: "", type: "ABA" },
+    81: { signName: "Victory Baptist Church", name: "Victory Baptist Church", org: "Victory Baptist Church", rep: "Michael F. Driggers", phone: "501-352-4827", email: "mdriggers@victorybc.org", city: "", type: "ABA" },
+    82: { signName: "Light of Grace Baptist Mission", name: "Light of Grace Baptist Mission", org: "Light of Grace Baptist Mission", rep: "Craig Stark", phone: "405-226-5274", email: "cstark@lightofgrace.org", city: "", type: "ABA" },
+    83: { signName: "Texas Baptist Institute & Seminary", name: "Texas Baptist Institute & Seminary", org: "Texas Baptist Institute & Seminary", rep: "Robert Wallace", phone: "903-657-6543", email: "rwallace@tbi-edu.org", city: "", type: "ABA" },
+    84: { signName: "1st Baptist Church East Bay", name: "1st Baptist Church East Bay", org: "1st Baptist Church East Bay", rep: "Chuck Fernandez", phone: "352-277-1753", email: "cfernandez@1stbceastbay.org", city: "", type: "ABA" },
+    85: { signName: "Emmanuel MBC", name: "Emmanuel MBC", org: "Emmanuel MBC", rep: "Bobby Sparks", phone: "903-268-3465", email: "bsparks@emmanuelmbc.org", city: "", type: "ABA" },
+    86: { signName: "Ray of Grace", name: "Ray of Grace", org: "Ray of Grace", rep: "Mike Wilkes", phone: "318-840-8092", email: "mwilkes@rayofgrace.org", city: "", type: "ABA" },
+    87: { signName: "LMBIS", name: "LMBIS", org: "LMBIS", rep: "Mike Wilkes", phone: "318-840-8092", email: "mwilkes@lmbis.edu", city: "", type: "ABA" },
+    88: { signName: "HPB Publishing", name: "HPB Publishing", org: "HPB Publishing", rep: "James Sumrall", phone: "318-450-1831", email: "sumrall@hpbpub.org", city: "", type: "ABA" },
+    89: { signName: "HPB Publishing", name: "HPB Publishing", org: "HPB Publishing", rep: "James Sumrall", phone: "318-450-1831", email: "sumrall@hpbpub.org", city: "", type: "ABA" },
+    90: { signName: "World-Wide Literature & Supplies", name: "WWLMS", org: "WWLMS", rep: "Joel Campbell", phone: "870-831-0755", email: "joel@wwlms.org", city: "", type: "ABA" },
+    91: { signName: "Utah Missions", name: "Utah Missions", org: "Utah Missions", rep: "Daniel Teague", phone: "812-675-2140", email: "dteague@utahmissions.org", city: "", type: "ABA" },
+    92: { signName: "Bogard Press", name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", phone: "903-276-1943", email: "John.Oswald@bogardpress.org", city: "", type: "ABA" },
+    93: { signName: "Bogard Press", name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", phone: "903-276-1943", email: "John.Oswald@bogardpress.org", city: "", type: "ABA" },
+    94: { signName: "Macedonian Missionary Service", name: "Macedonian Missionary Service", org: "Macedonian Missionary Service", rep: "Joseph Young", phone: "606-677-6683", email: "jyoung@macedonianservice.org", city: "", type: "ABA" },
+    95: { signName: "Macedonian Missionary Service", name: "Macedonian Missionary Service", org: "Macedonian Missionary Service", rep: "Joseph Young", phone: "606-677-6683", email: "jyoung@macedonianservice.org", city: "", type: "ABA" },
+    96: { signName: "MTM", name: "MTM", org: "MTM", rep: "Chase Reynolds", phone: "817-675-4548", email: "creynolds@missionarytraining.org", city: "", type: "ABA" },
+    97: { signName: "Lifeline Baptist Church", name: "Lifeline Baptist Church", org: "Lifeline Baptist Church", rep: "David P. Smith", phone: "817-726-8781", email: "dsmith@lifelinebaptist.org", city: "", type: "ABA" },
+    98: { signName: "Calvary Baptist Church Foristell", name: "Calvary Baptist Church Foristell", org: "Calvary Baptist Church Foristell", rep: "Kurt Neeley", phone: "870-494-5259", email: "kneeley@calvaryforistell.org", city: "", type: "ABA" },
+    99: { signName: "Sublett Road Baptist Church", name: "Sublett Road Baptist Church", org: "Sublett Road Baptist Church", rep: "Matthew Thompson", phone: "903-241-1807", email: "mthompson@subletroadbc.org", city: "", type: "ABA" },
+    100: { signName: "Texas Baptist Institute & Seminary", name: "Texas Baptist Institute & Seminary", org: "Texas Baptist Institute & Seminary", rep: "Robert Wallace", phone: "903-657-6543", email: "rwallace@tbi-edu.org", city: "", type: "ABA" },
+    101: { signName: "Morrow Music", name: "Morrow Music", org: "Morrow Music", rep: "Donald G. Morrow", phone: "918-706-5636", email: "dmorrow@morrowmusic.org", city: "", type: "ABA" },
+    102: { signName: "Maplewood Baptist Church", name: "Maplewood Baptist Church", org: "Maplewood Baptist Church", rep: "Gerry O Calba", phone: "304-707-1489", email: "gocalba@maplewoodobaptist.org", city: "", type: "ABA" },
+    103: { signName: "Second Baptist Church", name: "Second Baptist Church", org: "Second Baptist Church", rep: "Daniel Aleman", phone: "310-980-1026", email: "daleman@secondbc.org", city: "", type: "ABA" },
+    104: { signName: "Second Baptist Church", name: "Second Baptist Church", org: "Second Baptist Church", rep: "Daniel Aleman", phone: "310-980-1026", email: "daleman791@yahoo.com", city: "", type: "ABA" },
+    105: { signName: "Jenna Summers Ministries", name: "Jenna Summers Ministries", org: "Jenna Summers Ministries", rep: "Jenna Summers", phone: "903-574-2524", email: "jennasummers14@yahoo.com", city: "", type: "Partner" },
+    106: { signName: "Faith Baptist Church", name: "Faith Baptist Church", org: "Faith Baptist Church", rep: "Todd Dornan", phone: "501-912-9022", email: "todd@faithnlr.org", city: "", type: "ABA" },
+    107: { signName: "Restoration Hill Church", name: "Restoration Hill Church", org: "Restoration Hill Church", rep: "Todd Haneline", phone: "281-303-3061", email: "thaneline@restorationhill.org", city: "", type: "ABA" },
+    108: { signName: "College Station Baptist Church", name: "College Station Baptist Church", org: "College Station Baptist Church", rep: "James Williams", phone: "979-571-0915", email: "jwilliams@collegestation.org", city: "", type: "ABA" },
+    109: { signName: "TECH Team Advantage", name: "TECH Team Advantage", org: "TECH Team Advantage", rep: "Kelvin Gunnells", phone: "903-757-4530", email: "kgunnells@techteam.org", city: "", type: "Partner" },
+    110: { signName: "Flatwoods MBC", name: "Flatwoods MBC", org: "Flatwoods MBC", rep: "Joel Dillahunty", phone: "936-225-2845", email: "jdillahunty@flatwoodsmbc.org", city: "", type: "ABA" },
+    111: { signName: "Interstate Mission Development", name: "Interstate Mission Development", org: "Interstate Mission Development", rep: "Tim Ward", phone: "479-640-5976", email: "tward@interstatmission.org", city: "", type: "ABA" },
+    112: { signName: "James Greene & Associates", name: "James Greene & Associates", org: "James Greene & Associates", rep: "Madison Johnson", phone: "501-391-8406", email: "mjohnson@jamesgreene.org", city: "", type: "Partner" },
+    113: { signName: "Cornerstone Baptist Church", name: "Cornerstone Baptist Church", org: "Cornerstone Baptist Church", rep: "Ronald Howell", phone: "630-547-5505", email: "rhowell@cornerstonebaptist.org", city: "", type: "ABA" },
+    114: { signName: "Westwood Missionary Baptist Church", name: "Westwood Missionary Baptist Church", org: "Westwood Missionary Baptist Church", rep: "Casey McNair", phone: "863-224-3686", email: "cmcnair@westwoodmbc.org", city: "", type: "ABA" },
+    115: { signName: "Westwood Missionary Baptist Church", name: "Westwood Missionary Baptist Church", org: "Westwood Missionary Baptist Church", rep: "Casey McNair", phone: "863-224-3686", email: "cmcnair@westwoodmbc.org", city: "", type: "ABA" },
+    116: { signName: "Westwood Missionary Baptist Church", name: "Westwood Missionary Baptist Church", org: "Westwood Missionary Baptist Church", rep: "Casey McNair", phone: "863-224-3686", email: "cmcnair@westwoodmbc.org", city: "", type: "ABA" },
+    117: { signName: "Westwood Missionary Baptist Church", name: "Westwood Missionary Baptist Church", org: "Westwood Missionary Baptist Church", rep: "Casey McNair", phone: "863-224-3686", email: "cmcnair@westwoodmbc.org", city: "", type: "ABA" },
+    118: { signName: "Westwood Missionary Baptist Church", name: "Westwood Missionary Baptist Church", org: "Westwood Missionary Baptist Church", rep: "Casey McNair", phone: "863-224-3686", email: "cmcnair@westwoodmbc.org", city: "", type: "ABA" },
+    119: { signName: "Westwood Missionary Baptist Church", name: "Westwood Missionary Baptist Church", org: "Westwood Missionary Baptist Church", rep: "Casey McNair", phone: "863-224-3686", email: "cmcnair@westwoodmbc.org", city: "", type: "ABA" },
+    120: { signName: "Westwood Missionary Baptist Church", name: "Westwood Missionary Baptist Church", org: "Westwood Missionary Baptist Church", rep: "Casey McNair", phone: "863-224-3686", email: "cmcnair@westwoodmbc.org", city: "", type: "ABA" },
+    121: { signName: "Bogard Press", name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", phone: "903-276-1943", email: "John.Oswald@bogardpress.org", city: "", type: "ABA" },
+    122: { signName: "Bogard Press", name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", phone: "903-276-1943", email: "John.Oswald@bogardpress.org", city: "", type: "ABA" },
+    123: { signName: "Bogard Press", name: "Bogard Press", org: "Bogard Press", rep: "John Oswald", phone: "903-276-1943", email: "John.Oswald@bogardpress.org", city: "Texarkana, TX  75503", type: "ABA" }
+};
+
+        function createBooth(num) {
+            if (num === null) {
+                const div = document.createElement('div');
+                div.className = 'spacer';
+                return div;
+            }
+            const ex = exhibitors[num];
+            const div = document.createElement('div');
+            div.className = `booth ${ex && ex.type === 'Partner' ? 'partner' : ex ? 'aba' : 'empty'}`;
+            const shortName = ex ? ex.signName.split(' ').slice(0, 2).join(' ') : '';
+            div.innerHTML = `<div class="booth-num">${num}</div><div class="booth-name">${shortName}</div>`;
+            return div;
+        }
+
+        function renderLayout() {
+            const layout = [
+                [107, 106, 77, 76, 47, 46, 17, 16],
+                [108, 105, 78, 75, 48, 45, 18, 15],
+                [109, 104, 79, 74, 49, 44, 19, 14],
+                [110, 103, 80, 73, 50, 43, 20, 13],
+                [111, 102, 81, 72, 51, 42, 21, 12],
+                [112, 101, 82, 71, 52, 41, 22, 11],
+                [113, 100, 83, 70, 53, 40, 23, 10],
+                [114, null, null, null, null, null, null, 9],
+                [115, 99, 84, 69, 54, 39, 24, 8],
+                [116, 98, 85, 68, 55, 38, 25, 7],
+                [117, 97, 86, 67, 56, 37, 26, 6],
+                [118, 96, 87, 66, 57, 36, 27, 5],
+                [119, 95, 88, 65, 58, 35, 28, 4],
+                [120, 94, 89, 64, 59, 34, 29, 3],
+                [121, 93, 90, 63, 60, 33, 30, 2],
+                [122, 92, 91, 62, 61, 32, 31, 1],
+                [123, null, null, null, null, null, null, null]
+            ];
+
+            const container = document.getElementById('layout');
+            layout.forEach(rowData => {
+                const row = document.createElement('div');
+                row.className = 'row';
+                rowData.forEach(boothNum => {
+                    row.appendChild(createBooth(boothNum));
+                });
+                container.appendChild(row);
+            });
+        }
+
+        renderLayout();
+    </script>
+</body>
+</html>
