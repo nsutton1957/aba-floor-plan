@@ -186,8 +186,11 @@
             div.className = `booth ${ex && ex.type === 'Partner' ? 'partner' : ex ? 'aba' : 'empty'}`;
             const shortName = ex ? ex.signName.split(' ').slice(0, 2).join(' ') : '';
             div.innerHTML = `<div class="booth-num">${num}</div><div class="booth-name">${shortName}</div>`;
-            return div;
+div.onclick = () => showDetails(num, ex);
         }
+        function showDetails(boothNum, ex) {
+    alert(`Booth ${boothNum}\n\nOrg: ${ex.org}\nContact: ${ex.rep}\nPhone: ${ex.phone}\nEmail: ${ex.email}`);
+}
 
         function renderLayout() {
             const layout = [
