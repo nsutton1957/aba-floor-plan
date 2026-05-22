@@ -186,11 +186,15 @@
             div.className = `booth ${ex && ex.type === 'Partner' ? 'partner' : ex ? 'aba' : 'empty'}`;
             const shortName = ex ? ex.signName.split(' ').slice(0, 2).join(' ') : '';
             div.innerHTML = `<div class="booth-num">${num}</div><div class="booth-name">${shortName}</div>`;
-div.onclick = () => showDetails(num, ex);
+            div.onclick = () => {
+                if (ex) {
+                    alert(`Booth ${num}\n\nOrganization: ${ex.org}\nSign Name: ${ex.signName}\nContact: ${ex.rep}\nPhone: ${ex.phone}\nEmail: ${ex.email}\nType: ${ex.type}`);
+                } else {
+                    alert(`Booth ${num} - Available`);
+                }
+            };
+            return div;
         }
-        function showDetails(boothNum, ex) {
-    alert(`Booth ${boothNum}\n\nOrg: ${ex.org}\nContact: ${ex.rep}\nPhone: ${ex.phone}\nEmail: ${ex.email}`);
-}
 
         function renderLayout() {
             const layout = [
