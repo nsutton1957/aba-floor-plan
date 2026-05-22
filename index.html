@@ -7,7 +7,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 10px; }
-        .container { max-width: 100%; margin: 0 auto; }
+        .container { max-width: 100%; margin: 0 auto; display: flex; justify-content: center; }
         .header { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
         .header h1 { color: #333; font-size: 1.5em; margin-bottom: 5px; }
         .header p { color: #666; font-size: 0.8em; }
@@ -25,12 +25,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>2026 ABA Exhibitors</h1>
-            <p>Hot Springs Convention Center - Hall A</p>
-        </div>
-        <div class="floor-plan">
-            <div class="rows-container" id="layout"></div>
+        <div>
+            <div class="header">
+                <h1>2026 ABA Exhibitors</h1>
+                <p>Hot Springs Convention Center - Hall A</p>
+            </div>
+            <div class="floor-plan">
+                <div class="rows-container" id="layout"></div>
+            </div>
         </div>
     </div>
 
@@ -58,7 +60,6 @@
 
         function renderLayout() {
             const layout = [[16,15,14,13,12,11,10,9],[17,18,19,20,21,22,23,null],[46,45,44,43,42,41,40,39],[47,48,49,50,51,52,53,54],[76,75,74,73,72,71,70,69],[77,78,79,80,81,82,83,84],[106,105,104,103,102,101,100,99],[107,108,109,110,111,112,113,114],[null,null,null,null,null,null,null,115],[24,25,26,27,28,29,30,31],[8,7,6,5,4,3,2,1],[38,37,36,35,34,33,32,39],[55,56,57,58,59,60,61,62],[68,67,66,65,64,63,62,69],[84,85,86,87,88,89,90,83],[99,98,97,96,95,94,93,100],[122,121,120,119,118,117,116,115]];
-
             const container = document.getElementById('layout');
             layout.forEach(rowData => {
                 const row = document.createElement('div');
