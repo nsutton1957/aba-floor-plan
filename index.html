@@ -1,183 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABA 2026 Exhibit Floor Plan</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 10px; }
-.container { display: flex; justify-content: center; }
-.wrapper { max-width: fit-content; overflow: auto; }
-.header { background: #fff; padding: 14px; border-radius: 8px; margin-bottom: 14px; text-align: center; }
-.header h1 { color: #333; font-size: 1.4em; margin-bottom: 4px; }
-.header p { color: #666; font-size: 0.85em; }
-.floor-plan { background: #fff; padding: 24px; border-radius: 8px; }
-
-/* The grid: 9 columns wide.
-   col1 = left edge | col2-3 block A | gap | col4-5 block B | gap | col6-7 block C | gap | col8 right edge
-   We use explicit grid-column / grid-row placement per booth. */
-.grid {
-  display: grid;
-  grid-template-columns: 62px 26px 62px 62px 26px 62px 62px 26px 62px 62px 26px 62px;
-  grid-auto-rows: 62px;
-  gap: 4px;
-}
-.booth {
-  border: 1px solid #999; background: #fff;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  text-align: center; cursor: pointer; overflow: hidden;
-}
-.booth:hover { box-shadow: 0 2px 6px rgba(0,0,0,.3); position: relative; z-index: 2; }
-.booth .n { font-weight: bold; font-size: .95em; }
-.booth .o { font-size: .47em; color: #555; line-height: 1.05; margin-top: 1px; padding: 0 2px; }
-.booth.aba { background: #e3f2fd; border-color: #1976d2; }
-.booth.partner { background: #fff3e0; border-color: #f57c00; }
-.booth.shift-up { transform: translateY(-20px); }
-
-.detail { display: none; position: fixed; background: #fff; border: 2px solid #333; border-radius: 8px; padding: 14px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,.3); max-width: 320px; }
-.detail.show { display: block; }
-.detail h3 { margin-bottom: 8px; color: #1976d2; }
-.detail p { margin: 4px 0; font-size: .9em; }
-.detail .label { font-weight: bold; color: #666; }
-
-.legend { display: flex; gap: 20px; justify-content: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid #ddd; }
-.legend-item { display: flex; align-items: center; gap: 8px; font-size: .9em; }
-.legend-box { width: 26px; height: 26px; border: 1px solid; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABA 2026 Exhibit Floor Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+ 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+ 
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+ 
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+ 
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+ 
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+ 
+        .content {
+            padding: 30px;
+        }
+ 
+        .floor-plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+ 
+        .booth {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+ 
+        .booth:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+ 
+        .booth-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+ 
+        .booth-name {
+            font-size: 0.95em;
+            color: #333;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+ 
+        @media (max-width: 768px) {
+            .floor-plan-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+ 
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<div class="wrapper">
-<div class="header">
-<h1>2026 ABA Exhibitors &mdash; Hall A</h1>
-<p>American Baptist Association &middot; June 22&ndash;25, 2026 &middot; 10x10 Booths</p>
-</div>
-<div class="floor-plan">
-<div class="grid" id="grid"></div>
-<div class="legend">
-<div class="legend-item"><div class="legend-box" style="background:#e3f2fd;border-color:#1976d2"></div><span>ABA Organizations</span></div>
-<div class="legend-item"><div class="legend-box" style="background:#fff3e0;border-color:#f57c00"></div><span>Partners</span></div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="detail" id="detail"></div>
-
-<script>
-const exhibitors = {"1": {"sign": "International Christian Publishers", "org": "International Christian Publishers", "rep": "Bill Johnson", "phone": "903-278-2648", "email": "billjohnson@icplit.org", "type": "ABA"}, "2": {"sign": "International Christian Publishers", "org": "International Christian Publishers", "rep": "Bill Johnson", "phone": "903-278-2648", "email": "billjohnson@icplit.org", "type": "ABA"}, "3": {"sign": "Faith Baptist Church/Sterlington Missions", "org": "Promise Land MBC", "rep": "Kevin Hutcheson", "phone": "863-308-5546", "email": "khutch324@gmail.com", "type": "ABA"}, "4": {"sign": "The Burdettes at Monterey, TN", "org": "Hopewell Baptist Church", "rep": "Terry Romine", "phone": "931-257-8282", "email": "terry.e.romine@gmail.com", "type": "ABA"}, "5": {"sign": "Brook Besor Baptist Church", "org": "Brook Besor Baptist Church", "rep": "Jerry Baker", "phone": "432-770-2302", "email": "pastorncmbc@yahoo.com", "type": "ABA"}, "6": {"sign": "Discover Green Bay", "org": "Discover Green Bay", "rep": "Michael Cherek", "phone": "920-770-1470", "email": "michael@greenbay.com", "type": "Partner"}, "7": {"sign": "Faith Bible Institute", "org": "Faith Bible Institute", "rep": "Wes Pleasants", "phone": "318-235-1441", "email": "wes@fbiclass.com", "type": "ABA"}, "8": {"sign": "Faith Bible Institute", "org": "Faith Bible Institute", "rep": "Wes Pleasants", "phone": "318-235-1441", "email": "wes@fbiclass.com", "type": "ABA"}, "9": {"sign": "Faith Bible Institute", "org": "Faith Bible Institute", "rep": "Wes Pleasants", "phone": "318-235-1441", "email": "wes@fbiclass.com", "type": "ABA"}, "10": {"sign": "Ukraine Missions, Pearl MBC Zhytomyr, Ukraine", "org": "Pearl MBC", "rep": "Tony C. Hansen", "phone": "812-372-5999", "email": "tonerlandmark@aol.com", "type": "ABA"}, "11": {"sign": "Broken Spokes Motorcycle Ministry", "org": "Broken Spokes Motorcycle Ministry", "rep": "Herbert S. Salter", "phone": "360-434-6871", "email": "tsalter2081@msn.com", "type": "ABA"}, "12": {"sign": "Michio Kawahara, Yokohama, Japan", "org": "Unity MBC", "rep": "Mark Harris", "phone": "501-831-2105", "email": "dean@mb-seminary.net", "type": "ABA"}, "13": {"sign": "Seeing Truth Ministry", "org": "Wellston MBC, Wellston, OK", "rep": "Ken Sibley", "phone": "859-321-6634", "email": "seeingtruth@gmail.com", "type": "ABA"}, "14": {"sign": "American Baptist Association Credit Union", "org": "American Baptist Association Credit Union", "rep": "Julie Knight", "phone": "832-465-1415", "email": "aba@abacu.org", "type": "ABA"}, "15": {"sign": "Crazy Faith Designs", "org": "Crazy Faith Designs", "rep": "Chad Helton", "phone": "985-750-7723", "email": "chad@crazyfaithdesigns.net", "type": "ABA"}, "16": {"sign": "Agape Mission Baptist Church", "org": "Agape Mission Baptist Church - (sponsored by Madison Ave MBC)", "rep": "Thang Sian & Nate Lowe", "phone": "616-272-2057 Bro. Thang & 616-214-7200 - Bro. Nate", "email": "nateslowe@gmail.com", "type": "ABA"}, "17": {"sign": "Reach Alaska", "org": "Faith Missionary Baptist Church", "rep": "James Shields", "phone": "903-812-4148", "email": "familyofshields@gmail.com", "type": "ABA"}, "18": {"sign": "Global Surge", "org": "Global Surge", "rep": "Melissa Crawford", "phone": "785-414-8614", "email": "melissa@globalsurge.org", "type": "Partner"}, "19": {"sign": "LBU Global", "org": "LBU Global", "rep": "S. McLean Jones", "phone": "318-686-2360", "email": "mjones@lbu.edu", "type": "Partner"}, "20": {"sign": "Gospelflight", "org": "Gospelflight Aviation", "rep": "Randall Gillespie", "phone": "407-279-1931", "email": "randallg@gmail.com", "type": "ABA"}, "21": {"sign": "Gulf Coast Baptist College", "org": "Gulf Coast Baptist College", "rep": "Herman Strickland", "phone": "850-324-6555", "email": "wfbi2@yahoo.com", "type": "ABA"}, "22": {"sign": "Gulf Coast Baptist College", "org": "Gulf Coast Baptist College", "rep": "Herman Strickland", "phone": "850-324-6555", "email": "wfbi2@yahoo.com", "type": "ABA"}, "23": {"sign": "Lighthouse Electrical Ministries", "org": "Lighthouse Electrical Ministries", "rep": "Kevin Mattox", "phone": "616-460-3989", "email": "LighthouseElectricalMin@gmail.com", "type": "ABA"}, "24": {"sign": "Isaiah 55:11 Project", "org": "Victory Missionary Baptist Church", "rep": "Ken Worthen", "phone": "479-857-1011", "email": "kenworthen@hotmail.com", "type": "ABA"}, "25": {"sign": "ABA Chaplaincy Commission", "org": "ABA Chaplaincy Commission", "rep": "Terry Romine", "phone": "931-257-8282", "email": "terry.e.romine@gmail.com", "type": "ABA"}, "26": {"sign": "ABA Chaplaincy Commission", "org": "ABA Chaplaincy Commission", "rep": "Terry Romine", "phone": "931-257-8282", "email": "terry.e.romine@gmail.com", "type": "ABA"}, "27": {"sign": "ABA Chaplaincy Commission", "org": "ABA Chaplaincy Commission", "rep": "Terry Romine", "phone": "931-257-8282", "email": "terry.e.romine@gmail.com", "type": "ABA"}, "28": {"sign": "New Road", "org": "New Road Baptist Church", "rep": "Randy Phillips", "phone": "740-441-7843", "email": "randyp7542@gmail.com", "type": "ABA"}, "29": {"sign": "New Road", "org": "New Road Baptist Church", "rep": "Randy Phillips", "phone": "740-441-7843", "email": "randyp7542@gmail.com", "type": "ABA"}, "30": {"sign": "SAU MBSF", "org": "SAU MBSF", "rep": "Collin Gregg", "phone": "918-565-2739", "email": "sau.mbsf@gmail.com", "type": "ABA"}, "31": {"sign": "Heart Way", "org": "Heart Way (Ministry of Horizon Baptist Church)", "rep": "Jodie Vesely", "phone": "979-327-6086", "email": "jodie@heartwaycare.org", "type": "ABA"}, "32": {"sign": "ABA History and Archives", "org": "History & Archive Committee", "rep": "Philip Wysocki", "phone": "231-640-0401", "email": "philipwysocki@yahoo.com", "type": "ABA"}, "33": {"sign": "Concord Baptist Institute", "org": "Concord Baptist Institute", "rep": "Deedra Clark", "phone": "405-802-2612", "email": "deedraclark@aol.com", "type": "ABA"}, "34": {"sign": "Landmark Baptist Church", "org": "Landmark Baptist Church", "rep": "Tim Carter", "phone": "501-605-7600", "email": "ekalbob1@yahoo.com", "type": "ABA"}, "35": {"sign": "Compass NYC", "org": "Calvary Missionary Baptist Church", "rep": "Brandon Rutherford", "phone": "813-716-9865", "email": "Rutherfordnyc@gmail.com", "type": "ABA"}, "36": {"sign": "Ride For God", "org": "Calvary Missionary Baptist Church", "rep": "Brandon Rutherford", "phone": "813-716-9865", "email": "Rutherfordnyc@gmail.com", "type": "ABA"}, "37": {"sign": "The Remote Network", "org": "Calvary Missionary Baptist Church", "rep": "Brandon Rutherford", "phone": "813-716-9865", "email": "Rutherfordnyc@gmail.com", "type": "ABA"}, "38": {"sign": "Central States Baptist Association", "org": "First Baptist Church of Northern Heights", "rep": "Ryan Miller", "phone": "816-876-5405", "email": "romiller82@msn.com", "type": "ABA"}, "39": {"sign": "Barin Field Christian Camp", "org": "West Florida Association/Barin Field Christian Camp", "rep": "Curtis Morrell", "phone": "256-668-6140", "email": "barinfieldcc@gmail.com", "type": "ABA"}, "40": {"sign": "Arkansas State Missions", "org": "Arkansas State Missions", "rep": "Tyler Freeman", "phone": "870-403-6768", "email": "armissionsadvocate@gmail.com", "type": "ABA"}, "41": {"sign": "Arkansas State Missions", "org": "Arkansas State Missions", "rep": "Tyler Freeman", "phone": "870-403-6768", "email": "armissionsadvocate@gmail.com", "type": "ABA"}, "42": {"sign": "Kings Park Korean Baptist Church", "org": "First Baptist Church of Kingstowne for our Mission - Kings Park Korean BC", "rep": "James B Bowling Jr", "phone": "703-309-6364", "email": "jbowlingjr@aol.com", "type": "ABA"}, "43": {"sign": "VLMBC Missions", "org": "Valley Landmark Missionary Baptist Church", "rep": "Caleb J. Wood", "phone": "509-926-9564", "email": "pastor@valleylmbc.org", "type": "ABA"}, "44": {"sign": "Missionary Travel & Logistics", "org": "Missionary Travel & Logistics", "rep": "Jack Story", "phone": "765-461-4672", "email": "jackstory@mtltravel.com", "type": "ABA"}, "45": {"sign": "Langdon Street Missions", "org": "Langdon Street Baptist Church", "rep": "Anissa Bowling", "phone": "606-425-4321", "email": "lsbc.anissa@gmail.com", "type": "ABA"}, "46": {"sign": "Maness Family in Argentina", "org": "Nevill's Chapel Baptist Church", "rep": "Scott K. Maness", "phone": "903-572-5664", "email": "office@nevillschapel.org", "type": "ABA"}, "47": {"sign": "Japanese Missions", "org": "Calvary Baptist Church - Shin Kamoda", "rep": "Bill Kuykendall", "phone": "903-918-5100", "email": "bkuykendall@cbchenderson.org", "type": "ABA"}, "48": {"sign": "The Phillips in France", "org": "Calvary MBC - Orlando, FL", "rep": "Anthony Phillips", "phone": "407-380-3626", "email": "thephillipsinfrance@gmail.com", "type": "ABA"}, "49": {"sign": "Women's Assistance Corps", "org": "Taylor's Chapel MBC/WACS", "rep": "Toni Poe", "phone": "870-403-4465", "email": "wacstoni@currently.com", "type": "ABA"}, "50": {"sign": "On Mission Family - Straders UK", "org": "Horizon Baptist Church", "rep": "John Strader", "phone": "281-818-9040", "email": "onmissionfamily@gmail.com", "type": "ABA"}, "51": {"sign": "F.I.S.H Ministries", "org": "Texarkana Baptist Children's Home", "rep": "Heather Thompson", "phone": "870-774-8214", "email": "heatherthompson@baptistkids.org", "type": "ABA"}, "52": {"sign": "F.I.S.H Ministries", "org": "Texarkana Baptist Children's Home", "rep": "Heather Thompson", "phone": "870-774-8214", "email": "heatherthompson@baptistkids.org", "type": "ABA"}, "53": {"sign": "Texarkana Baptist  Children's Home", "org": "Texarkana Baptist Children's Home", "rep": "Heather Thompson", "phone": "870-774-8214", "email": "heatherthompson@baptistkids.org", "type": "ABA"}, "54": {"sign": "Verse By Verse Bible Commentaries", "org": "Joseph L Looney II", "rep": "Joseph L Looney II", "phone": "903-949-8736", "email": "looney2jl@gmail.com", "type": "ABA"}, "55": {"sign": "Tanzanian Missions", "org": "Tanzanian Missions", "rep": "Joe Hellums", "phone": "501-351-2345", "email": "jhellums1@gmail.com", "type": "ABA"}, "56": {"sign": "Harvest Panama Mission", "org": "Harvest Oaks Church", "rep": "Daniel Haworth", "phone": "469-545-5740", "email": "haworth0801@yahoo.com", "type": "ABA"}, "57": {"sign": "Philippine Mission Development", "org": "Philippine Mission Development", "rep": "Wayne Stringer", "phone": "903-277-3590", "email": "ewaynestringer@valornet.com", "type": "ABA"}, "58": {"sign": "Visit Fort Wayne", "org": "Visit Fort Wayne", "rep": "Josie O'Donnell", "phone": "260-415-6301", "email": "josie@visitfortwayne.com", "type": "Partner"}, "59": {"sign": "Labor of Love", "org": "Labor of Love", "rep": "Tim Turner & Cindy Turner", "phone": "903-841-2586", "email": "cindyturner031865@gmail.com", "type": "ABA"}, "60": {"sign": "Missionary Alan & Julie Schoef", "org": "Alan & Julie Schoeff", "rep": "Julie Schoeff", "phone": "812-603-6233", "email": "eyesonchrist@outlook.com", "type": "ABA"}, "61": {"sign": "ABA Missions", "org": "ABA Missions", "rep": "Justin Coburn", "phone": "903-280-3622", "email": "jcoburn@abamissions.org", "type": "ABA"}, "62": {"sign": "ABA Missions", "org": "ABA Missions", "rep": "Justin Coburn", "phone": "903-280-3622", "email": "jcoburn@abamissions.org", "type": "ABA"}, "63": {"sign": "National Center for Life and Liberty", "org": "National Center for Life and Liberty - Sending Missionary under Pastor Jared Tanner - 30th Avenue Baptist Church - St. Petersburg, FL", "rep": "Rudy Holland", "phone": "727-619-4417", "email": "LHall@ncll.org", "type": "ABA"}, "64": {"sign": "MBSF @ Louisiana Tech", "org": "MBSF @ Louisiana Tech University", "rep": "Trey Campbell", "phone": "870-940-2061", "email": "bro.bear@hydeparkbaptist.org", "type": "ABA"}, "65": {"sign": "Missionary Baptist Seminary", "org": "Missionary Baptist Seminary", "rep": "Jeanie Sample", "phone": "501-455-4588", "email": "financial@mb-seminary.net", "type": "ABA"}, "66": {"sign": "Missionary Baptist Seminary", "org": "Missionary Baptist Seminary", "rep": "Jeanie Sample", "phone": "501-455-4588", "email": "financial@mb-seminary.net", "type": "ABA"}, "67": {"sign": "L\u00e9on, Mexico Mission Work", "org": "Northern Hills Baptist Church", "rep": "Roger Copeland", "phone": "903-824-7027", "email": "rcopeland63@hotmail.com", "type": "ABA"}, "68": {"sign": "Mexican Baptist Institute - Reynosa, Mexico", "org": "Mexican Baptist Institute", "rep": "Al Valladares", "phone": "956-499-5566", "email": "alvalladares7@gmail.com", "type": "ABA"}, "69": {"sign": "Mexican Baptist Institute - Reynosa, Mexico", "org": "Mexican Baptist Institute", "rep": "Al Valladares", "phone": "956-499-5566", "email": "alvalladares7@gmail.com", "type": "ABA"}, "70": {"sign": "Outreach Bible Project", "org": "Hillcrest Baptist Church", "rep": "David Hardin", "phone": "770-906-7795", "email": "David_OBP@outlook.com", "type": "ABA"}, "71": {"sign": "Jay Ross - Brazil Mission Team", "org": "Hillcrest Baptist Church", "rep": "Dianne Moore", "phone": "404-660-6431", "email": "dmoore205@gmail.com", "type": "ABA"}, "72": {"sign": "Iglesia Bautista Bel\u00e9n", "org": "Bethlehem MBC", "rep": "Luis Vazquez", "phone": "479-264-8035", "email": "jlirwin@arkwest.com", "type": "ABA"}, "73": {"sign": "Ministries in Tantoyuca, Veracruz, Mexico", "org": "30th Avenue Baptist Church", "rep": "Juan Gonzalez", "phone": "210-419-7176", "email": "c-bellgonzalez@hotmail.com", "type": "ABA"}, "74": {"sign": "Cornerstone MBC/Nanna Ministry", "org": "Cornerstone MBC", "rep": "John Kight", "phone": "575-914-3816", "email": "RJDK02@proton.me", "type": "ABA"}, "75": {"sign": "Cedar Hills Baptist Youth Camp", "org": "Cedar Hills Baptist Youth Camp", "rep": "Cliff Hawkins", "phone": "580-467-2941", "email": "cliffhawkinsjr@gmail.com", "type": "ABA"}, "76": {"sign": "Freedom Ministries", "org": "Freedom Ministries", "rep": "David Shockey", "phone": "501-276-8183", "email": "david89440@aol.com", "type": "ABA"}, "77": {"sign": "Central Baptist Seminary", "org": "Central Baptist Seminary", "rep": "Juan Gallegos", "phone": "830-313-2363", "email": "sbcmex@hotmail.com", "type": "ABA"}, "78": {"sign": "Prevailing Hope Counseling Ministries", "org": "First Landmark MBC", "rep": "Lisa Gee", "phone": "574-850-6221", "email": "prevailinghopecounselingmin@gmail.com", "type": "ABA"}, "79": {"sign": "Visit Jacksonville and the Beaches", "org": "Visit Jacksonville and the Beaches", "rep": "Katie Quackenbush", "phone": "904-483-1029", "email": "kquackenbush@visitjacksonville.com", "type": "Partner"}, "80": {"sign": "Mississippi Baptist Bible Seminary", "org": "Missionary Baptist Bibile Seminary - Antioch MBC Pearl, MS", "rep": "B.J. Bennet", "phone": "601-966-1627", "email": "antiochbaptistpreacher@gmail.com", "type": "ABA"}, "81": {"sign": "Bro. Glen Knight, RIM", "org": "Victory Baptist Church, Sherwood, AR", "rep": "Michael F. Driggers", "phone": "501-352-4827", "email": "mfdriggers@gmail.com", "type": "ABA"}, "82": {"sign": "Light of Grace Baptist Mission - Las Vegas", "org": "Light of Grace Baptist Mission", "rep": "Craig Stark", "phone": "405-226-5274", "email": "Craig@lightofgracemission.com", "type": "ABA"}, "83": {"sign": "Texas Baptist Institute & Seminary", "org": "Texas Baptist Institute & Seminary", "rep": "Robert Wallace", "phone": "903-657-6543", "email": "rwallaceyf@gmail.com", "type": "ABA"}, "84": {"sign": "Chuck Fernandez Florida/Kenya/Uganda", "org": "1st Baptist Church East Bay", "rep": "Chuck Fernandez", "phone": "352-277-1753", "email": "missionaryfernandez@gmail.com", "type": "ABA"}, "85": {"sign": "Tabernacle Ministries", "org": "Emmanuel MBC, Greenville, TX", "rep": "Bobby Sparks", "phone": "903-268-3465", "email": "bobbysparks00@gmail.com", "type": "ABA"}, "86": {"sign": "Ray of Grace", "org": "Ray of Grace", "rep": "Mike Wilkes", "phone": "318-840-8092", "email": "mikewilkes12@gmail.com", "type": "ABA"}, "87": {"sign": "Louisiana Missionary Baptist Institute & Seminary", "org": "LMBIS", "rep": "Mike Wilkes", "phone": "318-840-8092", "email": "mikewilkes12@gmail.com", "type": "ABA"}, "88": {"sign": "HPB Publishing", "org": "HPB Publishing/Hyde Park Baptist Church", "rep": "James Sumrall", "phone": "318-450-1831", "email": "J.W@hydeparkbaptist.org", "type": "ABA"}, "89": {"sign": "HPB Publishing", "org": "HPB Publishing/Hyde Park Baptist Church", "rep": "James Sumrall", "phone": "318-450-1831", "email": "J.W@hydeparkbaptist.org", "type": "ABA"}, "90": {"sign": "World-Wide Literature & Missionary Supplies (WWLMS)", "org": "World-Wide Literature & Missionary Supplies (WWLMS)", "rep": "Joel Campbell", "phone": "870-831-0755", "email": "wwlmshamburg@yahoo.com", "type": "ABA"}, "91": {"sign": "Utah Missions", "org": "Utah Missions Sending Church MBC Bedford, IN", "rep": "Daniel Teague", "phone": "812-675-2140", "email": "Jdt1229@gmail.com", "type": "ABA"}, "92": {"sign": "Baptist Book Store", "org": "Bogard Press", "rep": "John Oswald", "phone": "903-276-1943", "email": "John.Oswald@bogardpress.org", "type": "ABA"}, "93": {"sign": "Bogard Press Bible Challenge", "org": "Bogard Press", "rep": "John Oswald", "phone": "903-276-1943", "email": "John.Oswald@bogardpress.org", "type": "ABA"}, "94": {"sign": "Macedonian Missionary Service", "org": "Macedonian Missionary Service", "rep": "Joseph Young", "phone": "606-677-6683", "email": "joe@macedonianms.org", "type": "ABA"}, "95": {"sign": "Macedonian Missionary Service", "org": "Macedonian Missionary Service", "rep": "Joseph Young", "phone": "606-677-6683", "email": "joe@macedonianms.org", "type": "ABA"}, "96": {"sign": "Missionary Training Ministry", "org": "MTM", "rep": "Chase Reynolds", "phone": "817-675-4548", "email": "chase_reynolds@wycliffe.org", "type": "ABA"}, "97": {"sign": "Lifeline Baptist Missionaries", "org": "Lifeline Baptist Church", "rep": "David P. Smith", "phone": "817-726-8781", "email": "davidpsmith49@gmail.com", "type": "ABA"}, "98": {"sign": "Calvary Baptist Church Foristell, MO", "org": "Calvary Baptist Church Foristell, MO", "rep": "Kurt Neeley", "phone": "870-494-5259", "email": "Kurburn@yahoo.com", "type": "ABA"}, "99": {"sign": "Matthew & Sarah Thompson", "org": "Sublett Road Baptist Church in Arlington, TX", "rep": "Matthew Thompson", "phone": "903-241-1807", "email": "mkthompson0722@gmail.com", "type": "ABA"}, "100": {"sign": "Texas Baptist Institute & Seminary", "org": "Texas Baptist Institute & Seminary", "rep": "Robert Wallace", "phone": "903-657-6543", "email": "rwallaceyf@gmail.com", "type": "ABA"}, "101": {"sign": "Morrow Music and Books", "org": "Morrow Music", "rep": "Donald G. Morrow", "phone": "918-706-5636", "email": "dgmorrow47@hotmail.com", "type": "ABA"}, "102": {"sign": "Copenhagen Bethel Missionary Baptist Church", "org": "Maplewood Baptist Church - Martinsburg, WV", "rep": "Gerry O Calba", "phone": "304-707-1489", "email": "cvrcb@outlook.com", "type": "ABA"}, "103": {"sign": "Second Baptist Missions", "org": "Second Baptist Church", "rep": "Daniel Aleman", "phone": "310-980-1026", "email": "daleman791@yahoo.com", "type": "ABA"}, "104": {"sign": "Second Baptist Missions", "org": "Second Baptist Church", "rep": "Daniel Aleman", "phone": "310-980-1026", "email": "daleman791@yahoo.com", "type": "ABA"}, "105": {"sign": "Jenna Summers - Author of Mama Jennifer", "org": "Jenna Summers Ministries", "rep": "Jenna Summers", "phone": "903-574--2524", "email": "jennasummers14@yahoo.com", "type": "Partner"}, "106": {"sign": "Faith Baptist Church", "org": "Faith Baptist Church", "rep": "Todd Dornan", "phone": "501-912-9022", "email": "todd@faithnlr.org", "type": "ABA"}, "107": {"sign": "Restoration Hill Church", "org": "Restoration Hill Church", "rep": "Todd Haneline", "phone": "281-303-3061", "email": "todd@restorekerrville.org", "type": "ABA"}, "108": {"sign": "College Station Baptist Church Elev8 MBSF", "org": "College Station Baptist Church", "rep": "James Williams", "phone": "979-571-0915", "email": "brojameswilliams@yahoo.com", "type": "ABA"}, "109": {"sign": "Missionary TECH Team Advantage", "org": "TECH Team Advantage", "rep": "Kelvin Gunnells", "phone": "903-757-4530", "email": "kgunnells@techteam.org", "type": "Partner"}, "110": {"sign": "Life and Freedom", "org": "Flatwoods MBC", "rep": "Joel Dillahunty", "phone": "936-225-2845", "email": "buddillahunty@pm.me", "type": "ABA"}, "111": {"sign": "Interstate Mission Development", "org": "Interstate Mission Development", "rep": "Tim Ward", "phone": "479-640-5976", "email": "a.tward@yahoo.com", "type": "ABA"}, "112": {"sign": "James Greene & Associates", "org": "James Greene & Associates", "rep": "Madison Johnson", "phone": "501-391-8406", "email": "mjohnson@jamesgreeneins.com", "type": "Partner"}, "113": {"sign": "Cornerstone Baptist Church", "org": "Cornerstone Baptist Church", "rep": "Ronald Howell", "phone": "630-547-5505", "email": "cornerstone-mbc@comcast.net", "type": "ABA"}, "114": {"sign": "Emmaus Baptist College", "org": "Westwood Missionary Baptist Church", "rep": "Casey McNair", "phone": "863-224-3686", "email": "joy@westwoodmbc.org", "type": "ABA"}, "115": {"sign": "Emmaus Baptist College", "org": "Westwood Missionary Baptist Church", "rep": "Casey McNair", "phone": "863-224-3686", "email": "joy@westwoodmbc.org", "type": "ABA"}, "116": {"sign": "Mattingly Family", "org": "Westwood Missionary Baptist Church", "rep": "Casey McNair", "phone": "863-224-3686", "email": "joy@westwoodmbc.org", "type": "ABA"}, "117": {"sign": "Westwood MBC", "org": "Westwood Missionary Baptist Church", "rep": "Casey McNair", "phone": "863-224-3686", "email": "joy@westwoodmbc.org", "type": "ABA"}, "118": {"sign": "Westwood MBC", "org": "Westwood Missionary Baptist Church", "rep": "Casey McNair", "phone": "863-224-3686", "email": "joy@westwoodmbc.org", "type": "ABA"}, "119": {"sign": "ABA Disaster Relief", "org": "Westwood Missionary Baptist Church", "rep": "Casey McNair", "phone": "863-224-3686", "email": "joy@westwoodmbc.org", "type": "ABA"}, "120": {"sign": "ABA Disaster Relief", "org": "Westwood Missionary Baptist Church", "rep": "Casey McNair", "phone": "863-224-3686", "email": "joy@westwoodmbc.org", "type": "ABA"}, "121": {"sign": "Bogard Press", "org": "Bogard Press", "rep": "John Oswald", "phone": "903-276-1943", "email": "John.Oswald@bogardpress.org", "type": "ABA"}, "122": {"sign": "Bogard Press", "org": "Bogard Press", "rep": "John Oswald", "phone": "903-276-1943", "email": "John.Oswald@bogardpress.org", "type": "ABA"}, "123": {"sign": "Bogard Press", "org": "Bogard Press", "rep": "John Oswald", "phone": "903-276-1943", "email": "John.Oswald@bogardpress.org", "type": "ABA"}};
-
-/*
-  Placement model — read directly from the PDF.
-  Grid columns (1-indexed, matching grid-template-columns):
-    1        = far-left edge column (107..123)
-    2,3      = Block A left/right pair   (gap col = 4)
-    5,6      = Block B left/right pair   (gap col = 7)
-    8,9      = Block C left/right pair   (gap col = 10)
-    11       = far-right edge column (16..1)
-
-  Rows: 1..17. Middle blocks: top group rows 1-7, cross-aisle row 8, bottom group rows 9-16.
-  Left edge fills rows 1-17. Right edge fills rows 2-17 (shifted down one).
-*/
-
-// Each entry: [boothNumber, gridColumn, gridRow]
-const placements = [];
-
-// --- Far-left edge column: 107 (top) .. 123 (bottom), rows 2..18, column 1
-[107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123]
-  .forEach((b,i)=> placements.push([b,1,i+2]));
-
-// --- Far-right edge column (column 11), explicit rows.
-// Booth 8 sits on the cross-aisle (row 8) per the PDF. 16..9 above it, 7..1 below.
-const rightCol = [16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
-const rightRows = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-rightCol.forEach((b,i)=> placements.push([b, 12, rightRows[i]]));
-
-// Helper for the three middle blocks.
-// leftTop  = 7 numbers (rows 1-7, left col), leftBot = 8 numbers (rows 9-16, left col)
-// rightTop = 7 numbers (rows 1-7, right col), rightBot = 8 numbers (rows 9-16, right col)
-function block(leftCol, rightCol, leftTop, leftBot, rightTop, rightBot){
-  leftTop.forEach((b,i)=> placements.push([b,leftCol,i+2]));     // rows 2-8
-  leftBot.forEach((b,i)=> placements.push([b,leftCol,i+10]));    // rows 10-17
-  rightTop.forEach((b,i)=> placements.push([b,rightCol,i+2]));   // rows 2-8
-  rightBot.forEach((b,i)=> placements.push([b,rightCol,i+10]));  // rows 10-17
-}
-
-// BLOCK A (cols 2 & 3):
-//   left col top  106..100, bottom 99..92
-//   right col top 77..83,   bottom 84..91
-block(3,4,
-  [106,105,104,103,102,101,100], [99,98,97,96,95,94,93,92],
-  [77,78,79,80,81,82,83],        [84,85,86,87,88,89,90,91]);
-
-// BLOCK B (cols 5 & 6):
-//   left col top  76..70, bottom 69..62
-//   right col top 47..53, bottom 54..61
-block(6,7,
-  [76,75,74,73,72,71,70], [69,68,67,66,65,64,63,62],
-  [47,48,49,50,51,52,53], [54,55,56,57,58,59,60,61]);
-
-// BLOCK C (cols 8 & 9):
-//   left col top  46..40, bottom 39..32
-//   right col top 17..23, bottom 24..31
-block(9,10,
-  [46,45,44,43,42,41,40], [39,38,37,36,35,34,33,32],
-  [17,18,19,20,21,22,23], [24,25,26,27,28,29,30,31]);
-
-function makeBooth(n, col, row){
-  const e = exhibitors[n];
-  const b = document.createElement('div');
-  b.className = 'booth' + (e ? ' ' + e.type.toLowerCase() : '') + (col === 1 ? ' shift-up' : '');
-  b.style.gridColumn = col;
-  b.style.gridRow = row;
-  b.innerHTML = `<div class="n">${n}</div>` + (e ? `<div class="o">${e.org}</div>` : '');
-  if (e) b.addEventListener('click', (ev)=> showDetail(n, e, ev));
-  return b;
-}
-
-function showDetail(n, e, ev){
-  const d = document.getElementById('detail');
-  let h = `<h3>Booth ${n}</h3>`;
-  h += `<p><span class="label">Organization:</span><br>${e.org}</p>`;
-  h += `<p><span class="label">Contact:</span><br>${e.rep}</p>`;
-  if (e.phone) h += `<p><span class="label">Phone:</span><br>${e.phone}</p>`;
-  if (e.email) h += `<p><span class="label">Email:</span><br>${e.email}</p>`;
-  d.innerHTML = h;
-  d.classList.add('show');
-
-  // Use viewport coords (clientX/Y) since the popup is position:fixed.
-  const pad = 12;
-  const rect = d.getBoundingClientRect();
-  const w = rect.width || 320;
-  const ht = rect.height || 200;
-
-  // Horizontal: prefer right of cursor, flip left if it would overflow.
-  let left = ev.clientX + pad;
-  if (left + w > window.innerWidth - 8) left = ev.clientX - w - pad;
-  if (left < 8) left = 8;
-
-  // Vertical: prefer below cursor, flip above if it would overflow the bottom.
-  let top = ev.clientY + pad;
-  if (top + ht > window.innerHeight - 8) top = ev.clientY - ht - pad;
-  if (top < 8) top = 8;
-
-  d.style.left = left + 'px';
-  d.style.top  = top + 'px';
-}
-
-function render(){
-  const g = document.getElementById('grid');
-  g.innerHTML = '';
-  placements.forEach(([n,col,row])=> g.appendChild(makeBooth(n,col,row)));
-}
-
-document.addEventListener('click', (e)=>{
-  const d = document.getElementById('detail');
-  if (!d.contains(e.target) && !e.target.closest('.booth')) d.classList.remove('show');
-});
-
-window.addEventListener('load', render);
-</script>
+    <div class="container">
+        <div class="header">
+            <h1>ABA 2026 Exhibit Floor Plan</h1>
+            <p>Hot Springs Convention Center - Hall A</p>
+        </div>
+ 
+        <div class="content">
+            <div class="floor-plan-grid" id="floorPlanGrid"></div>
+        </div>
+    </div>
+ 
+    <script>
+        const exhibitors = [
+  { booth_number: 1, name: "International Christian Publishers" },
+  { booth_number: 2, name: "International Christian Publishers" },
+  { booth_number: 3, name: "Faith Baptist Church/Sterlington Missions" },
+  { booth_number: 4, name: "The Burdettes at Monterey, TN" },
+  { booth_number: 5, name: "Brook Besor Baptist Church" },
+  { booth_number: 6, name: "Discover Green Bay" },
+  { booth_number: 7, name: "Faith Bible Institute" },
+  { booth_number: 8, name: "Faith Bible Institute" },
+  { booth_number: 9, name: "Faith Bible Institute" },
+  { booth_number: 10, name: "Ukraine Missions, Pearl MBC Zhytomyr, Ukraine" },
+  { booth_number: 11, name: "Broken Spokes Motorcycle Ministry" },
+  { booth_number: 12, name: "Michio Kawahara, Yokohama, Japan" },
+  { booth_number: 13, name: "Seeing Truth Ministry" },
+  { booth_number: 14, name: "American Baptist Association Credit Union" },
+  { booth_number: 15, name: "Crazy Faith Designs" },
+  { booth_number: 16, name: "Agape Mission Baptist Church" },
+  { booth_number: 17, name: "Reach Alaska" },
+  { booth_number: 18, name: "Global Surge" },
+  { booth_number: 19, name: "LBU Global" },
+  { booth_number: 20, name: "Gospelflight" },
+  { booth_number: 21, name: "Gulf Coast Baptist College" },
+  { booth_number: 22, name: "Gulf Coast Baptist College" },
+  { booth_number: 23, name: "Lighthouse Electrical Ministries" },
+  { booth_number: 24, name: "Isaiah 55:11 Project" },
+  { booth_number: 25, name: "ABA Chaplaincy Commission" },
+  { booth_number: 26, name: "ABA Chaplaincy Commission" },
+  { booth_number: 27, name: "ABA Chaplaincy Commission" },
+  { booth_number: 28, name: "New Road" },
+  { booth_number: 29, name: "New Road" },
+  { booth_number: 30, name: "SAU MBSF" },
+  { booth_number: 31, name: "Heart Way" },
+  { booth_number: 32, name: "ABA History and Archives" },
+  { booth_number: 33, name: "Concord Baptist Institute" },
+  { booth_number: 34, name: "Landmark Baptist Church" },
+  { booth_number: 35, name: "Compass NYC" },
+  { booth_number: 36, name: "Ride For God" },
+  { booth_number: 37, name: "The Remote Network" },
+  { booth_number: 38, name: "Central States Baptist Association" },
+  { booth_number: 39, name: "Barin Field Christian Camp" },
+  { booth_number: 40, name: "Arkansas State Missions" },
+  { booth_number: 41, name: "Arkansas State Missions" },
+  { booth_number: 42, name: "Kings Park Korean Baptist Church" },
+  { booth_number: 43, name: "VLMBC Missions" },
+  { booth_number: 44, name: "Missionary Travel & Logistics" },
+  { booth_number: 45, name: "Langdon Street Missions" },
+  { booth_number: 46, name: "Maness Family in Argentina" },
+  { booth_number: 47, name: "Japanese Missions" },
+  { booth_number: 48, name: "The Phillips in France" },
+  { booth_number: 49, name: "Women's Assistance Corps" },
+  { booth_number: 50, name: "On Mission Family - Straders UK" },
+  { booth_number: 51, name: "F.I.S.H Ministries" },
+  { booth_number: 52, name: "F.I.S.H Ministries" },
+  { booth_number: 53, name: "Texarkana Baptist  Children's Home" },
+  { booth_number: 54, name: "Verse By Verse Bible Commentaries" },
+  { booth_number: 55, name: "Tanzanian Missions" },
+  { booth_number: 56, name: "Harvest Panama Mission" },
+  { booth_number: 57, name: "Philippine Mission Development" },
+  { booth_number: 58, name: "Visit Fort Wayne" },
+  { booth_number: 59, name: "Labor of Love" },
+  { booth_number: 60, name: "Missionary Alan & Julie Schoef" },
+  { booth_number: 61, name: "ABA Missions" },
+  { booth_number: 62, name: "ABA Missions" },
+  { booth_number: 63, name: "National Center for Life and Liberty" },
+  { booth_number: 64, name: "MBSF @ Louisiana Tech" },
+  { booth_number: 65, name: "Missionary Baptist Seminary" },
+  { booth_number: 66, name: "Missionary Baptist Seminary" },
+  { booth_number: 67, name: "Léon, Mexico Mission Work" },
+  { booth_number: 68, name: "Mexican Baptist Institute - Reynosa, Mexico" },
+  { booth_number: 69, name: "Mexican Baptist Institute - Reynosa, Mexico" },
+  { booth_number: 70, name: "Outreach Bible Project" },
+  { booth_number: 71, name: "Jay Ross - Brazil Mission Team" },
+  { booth_number: 72, name: "Iglesia Bautista Belén" },
+  { booth_number: 73, name: "Ministries in Tantoyuca, Veracruz, Mexico" },
+  { booth_number: 74, name: "Cornerstone MBC/Nanna Ministry" },
+  { booth_number: 75, name: "Cedar Hills Baptist Youth Camp" },
+  { booth_number: 76, name: "Freedom Ministries" },
+  { booth_number: 77, name: "Central Baptist Seminary" },
+  { booth_number: 78, name: "Prevailing Hope Counseling Ministries" },
+  { booth_number: 79, name: "Visit Jacksonville and the Beaches" },
+  { booth_number: 80, name: "Mississippi Baptist Bible Seminary" },
+  { booth_number: 81, name: "Bro. Glen Knight, RIM" },
+  { booth_number: 82, name: "Light of Grace Baptist Mission - Las Vegas" },
+  { booth_number: 83, name: "Texas Baptist Institute & Seminary" },
+  { booth_number: 84, name: "Chuck Fernandez Florida/Kenya/Uganda" },
+  { booth_number: 85, name: "Tabernacle Ministries" },
+  { booth_number: 86, name: "Ray of Grace" },
+  { booth_number: 87, name: "Louisiana Missionary Baptist Institute & Seminary" },
+  { booth_number: 88, name: "HPB Publishing" },
+  { booth_number: 89, name: "HPB Publishing" },
+  { booth_number: 90, name: "World-Wide Literature & Missionary Supplies (WWLMS)" },
+  { booth_number: 91, name: "Utah Missions" },
+  { booth_number: 92, name: "Baptist Book Store" },
+  { booth_number: 93, name: "Bogard Press Bible Challenge" },
+  { booth_number: 94, name: "Macedonian Missionary Service" },
+  { booth_number: 95, name: "Macedonian Missionary Service" },
+  { booth_number: 96, name: "Missionary Training Ministry" },
+  { booth_number: 97, name: "Lifeline Baptist Missionaries" },
+  { booth_number: 98, name: "Calvary Baptist Church Foristell, MO" },
+  { booth_number: 99, name: "Matthew & Sarah Thompson" },
+  { booth_number: 100, name: "Texas Baptist Institute & Seminary" },
+  { booth_number: 101, name: "Morrow Music and Books" },
+  { booth_number: 102, name: "Copenhagen Bethel Missionary Baptist Church" },
+  { booth_number: 103, name: "Second Baptist Missions" },
+  { booth_number: 104, name: "Second Baptist Missions" },
+  { booth_number: 105, name: "Jenna Summers - Author of Mama Jennifer" },
+  { booth_number: 106, name: "Faith Baptist Church" },
+  { booth_number: 107, name: "Restoration Hill Church" },
+  { booth_number: 108, name: "College Station Baptist Church Elev8 MBSF" },
+  { booth_number: 109, name: "Missionary TECH Team Advantage" },
+  { booth_number: 110, name: "Life and Freedom" },
+  { booth_number: 111, name: "Interstate Mission Development" },
+  { booth_number: 112, name: "James Greene & Associates" },
+  { booth_number: 113, name: "Cornerstone Baptist Church" },
+  { booth_number: 114, name: "Emmaus Baptist College" },
+  { booth_number: 115, name: "Emmaus Baptist College" },
+  { booth_number: 116, name: "Mattingly Family" },
+  { booth_number: 117, name: "Westwood MBC" },
+  { booth_number: 118, name: "Westwood MBC" },
+  { booth_number: 119, name: "ABA Disaster Relief" },
+  { booth_number: 120, name: "ABA Disaster Relief" },
+  { booth_number: 121, name: "Bogard Press" },
+  { booth_number: 122, name: "Bogard Press" },
+  { booth_number: 123, name: "Bogard Press" }
+        ];
+ 
+        const grid = document.getElementById('floorPlanGrid');
+        exhibitors.forEach(booth => {
+            const boothEl = document.createElement('div');
+            boothEl.className = 'booth';
+            boothEl.innerHTML = `
+                <div class="booth-number">#${booth.booth_number}</div>
+                <div class="booth-name">${booth.name}</div>
+            `;
+            grid.appendChild(boothEl);
+        });
+    </script>
 </body>
 </html>
