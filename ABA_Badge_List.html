@@ -7,8 +7,6 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, sans-serif; background: #f4f4f4; color: #222; }
-
-  /* Top bar */
   .top-bar {
     background: #1a3a5c;
     color: #fff;
@@ -36,8 +34,6 @@
     transition: background 0.15s;
   }
   .nav-link:hover { background: #e6b44a; }
-
-  /* Search */
   .search-bar {
     background: #f4f4f4;
     padding: 10px 24px;
@@ -57,12 +53,8 @@
   }
   .search-bar input:focus { border-color: #c9993a; }
   #result-count { display: inline-block; margin-left: 14px; font-size: 13px; color: #555; }
-
-  /* Table */
   .table-wrap { padding: 0 16px 40px; }
   table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-
-  /* Letter header rows */
   .letter-header td {
     background: #1a3a5c;
     padding: 8px 14px;
@@ -79,34 +71,14 @@
     text-align: center;
     border-radius: 6px;
   }
-
-  /* Data rows */
   tr.row-even { background: #ffffff; }
   tr.row-odd  { background: #e9f0f8; }
   tr.row-even:hover, tr.row-odd:hover { background: #fff3d6; }
-
   td { padding: 9px 14px; vertical-align: middle; border-bottom: 1px solid #dce5ef; }
-
   .name-col { font-weight: 600; font-size: 15px; min-width: 190px; }
   .church-col { font-size: 14px; color: #333; min-width: 200px; }
   .loc-col { font-size: 13px; color: #555; white-space: nowrap; }
-
-  .exhib-tag {
-    display: inline-block;
-    margin-left: 8px;
-    background: #b33a00;
-    color: #fff;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 4px;
-    vertical-align: middle;
-    letter-spacing: 0.5px;
-  }
-
   .hidden { display: none; }
-
-  /* Total badge */
   .count-chip {
     display: inline-block;
     background: #c9993a;
@@ -118,11 +90,9 @@
     margin-left: 10px;
     vertical-align: middle;
   }
-
   @media print {
     .top-bar { position: static; }
     .search-bar { display: none; }
-    .nav-link { background: #555 !important; }
   }
 </style>
 </head>
@@ -145,12 +115,12 @@
 <table id="main-table">
   <colgroup>
     <col style="width:28%">
-    <col style="width:42%">
-    <col style="width:30%">
+    <col style="width:44%">
+    <col style="width:28%">
   </colgroup>
 
     <tr class="letter-header" id="letter-A">
-      <td colspan="4"><span class="letter-badge">A</span></td>
+      <td colspan="3"><span class="letter-badge">A</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Brenda Addison</td>
@@ -183,22 +153,22 @@
       <td class="loc-col">Spokane, WA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Danny Aleman<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Danny Aleman</td>
       <td class="church-col">Second Baptist Church</td>
       <td class="loc-col">Malvern, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Sally Aleman<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Sally Aleman</td>
       <td class="church-col">Second Baptist Church</td>
       <td class="loc-col">Malvern, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Thadeus Allen<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Thadeus Allen</td>
       <td class="church-col">North Fork MBC</td>
       <td class="loc-col">Paron, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Kevin Amburgey<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kevin Amburgey</td>
       <td class="church-col">Heartland Baptist Church</td>
       <td class="loc-col">Ashland, MO</td>
     </tr>
@@ -213,12 +183,12 @@
       <td class="loc-col">Hot Springs, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Kelly Anderson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kelly Anderson</td>
       <td class="church-col">Faith NLR</td>
       <td class="loc-col">Uzbekistan</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Todd Anderson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Todd Anderson</td>
       <td class="church-col">Faith NLR</td>
       <td class="loc-col">Uzbekistan</td>
     </tr>
@@ -279,20 +249,20 @@
     </tr>
 
     <tr class="letter-header" id="letter-B">
-      <td colspan="4"><span class="letter-badge">B</span></td>
+      <td colspan="3"><span class="letter-badge">B</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jerry Bailey<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jerry Bailey</td>
       <td class="church-col">Brook Besor Baptist Church</td>
       <td class="loc-col">Andrews, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Joanna Bailey<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Joanna Bailey</td>
       <td class="church-col">Brook Besor Baptist Church</td>
       <td class="loc-col">Andrews, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Stephen Bailey<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Stephen Bailey</td>
       <td class="church-col">Pavillard Baptist Church</td>
       <td class="loc-col">Amarillo, TX</td>
     </tr>
@@ -307,7 +277,7 @@
       <td class="loc-col">Corinth, MS</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Steven Baker<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Steven Baker</td>
       <td class="church-col">Faith Bible Institute</td>
       <td class="loc-col">Monroe, LA</td>
     </tr>
@@ -402,7 +372,7 @@
       <td class="loc-col">Pearl, MS</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">B.J. Bennett<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">B.J. Bennett</td>
       <td class="church-col">Antioch Baptist Church</td>
       <td class="loc-col">Pearl, MS</td>
     </tr>
@@ -637,12 +607,12 @@
       <td class="loc-col">Acworth, GA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ricki Boyle<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ricki Boyle</td>
       <td class="church-col">Hillcrest / Macedonian</td>
       <td class="loc-col">Acworth, GA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Christian Brady<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Christian Brady</td>
       <td class="church-col">Unity Baptist Church</td>
       <td class="loc-col">Hattiesburg, MS</td>
     </tr>
@@ -772,7 +742,7 @@
       <td class="loc-col">Spokane, WA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Ralph Burdette<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ralph Burdette</td>
       <td class="church-col">Hopewell Baptist Church</td>
       <td class="loc-col">Cunningham, TN</td>
     </tr>
@@ -787,7 +757,7 @@
       <td class="loc-col">Tull, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">David Butimore<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">David Butimore</td>
       <td class="church-col">Landmark MBC</td>
       <td class="loc-col">Arroyo Grande, CA</td>
     </tr>
@@ -802,7 +772,7 @@
       <td class="loc-col">Henderson, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Steve Butler<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Steve Butler</td>
       <td class="church-col">Texas Baptist Institute & Seminary</td>
       <td class="loc-col">Henderson, TX</td>
     </tr>
@@ -812,7 +782,7 @@
       <td class="loc-col">Science Hill, KY</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Larry Butte<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Larry Butte</td>
       <td class="church-col">Northside Baptist Church</td>
       <td class="loc-col">Science Hill, KY</td>
     </tr>
@@ -838,7 +808,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-C">
-      <td colspan="4"><span class="letter-badge">C</span></td>
+      <td colspan="3"><span class="letter-badge">C</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Donnie Cain</td>
@@ -846,7 +816,7 @@
       <td class="loc-col">Silsbee, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Gerry Calba<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Gerry Calba</td>
       <td class="church-col">Copenhagen Bethel MB Church</td>
       <td class="loc-col">Copenhagen, DK</td>
     </tr>
@@ -861,7 +831,7 @@
       <td class="loc-col">Copenhagen, DK</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Marco A. Calderon<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Marco A. Calderon</td>
       <td class="church-col">Mexican Baptist Institute</td>
       <td class="loc-col">Reynosa, Mexico</td>
     </tr>
@@ -871,32 +841,32 @@
       <td class="loc-col">Star City, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Evelynn Campbell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Evelynn Campbell</td>
       <td class="church-col">Calvary MBC - WWLMS</td>
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Hannah Campbell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Hannah Campbell</td>
       <td class="church-col">Calvary MBC - WWLMS</td>
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Hazel Campbell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Hazel Campbell</td>
       <td class="church-col">Calvary MBC - WWLMS</td>
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Joel Campbell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Joel Campbell</td>
       <td class="church-col">Calvary MBC - WWLMS</td>
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jr. Campbell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jr. Campbell</td>
       <td class="church-col">Calvary MBC - WWLMS</td>
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Nancy Campbell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Nancy Campbell</td>
       <td class="church-col">Calvary MBC - WWLMS</td>
       <td class="loc-col">Hamburg, AR</td>
     </tr>
@@ -906,7 +876,7 @@
       <td class="loc-col">Brooksville, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Trey Campbell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Trey Campbell</td>
       <td class="church-col">Hyde Park Baptist Church</td>
       <td class="loc-col">West Monroe, LA</td>
     </tr>
@@ -976,7 +946,7 @@
       <td class="loc-col">Dumas, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Micah Carter<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Micah Carter</td>
       <td class="church-col">Calvary Baptist Church</td>
       <td class="loc-col">Magnolia, AR</td>
     </tr>
@@ -991,7 +961,7 @@
       <td class="loc-col">Magnolia, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Timothy Carter<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Timothy Carter</td>
       <td class="church-col">Landmark Baptist Church</td>
       <td class="loc-col">Jacksonville, AR</td>
     </tr>
@@ -1021,7 +991,7 @@
       <td class="loc-col">Ratcliff, Ar</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Branden Case<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Branden Case</td>
       <td class="church-col">Berea Baptist Church</td>
       <td class="loc-col">Del Rio, TX</td>
     </tr>
@@ -1041,27 +1011,27 @@
       <td class="loc-col">Timpson, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Nathanial Cates<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Nathanial Cates</td>
       <td class="church-col">College Station Baptist Church</td>
       <td class="loc-col">College Station, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Allison Cebula<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Allison Cebula</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Amelia Cebula<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Amelia Cebula</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Jerry Chandler<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jerry Chandler</td>
       <td class="church-col">Langdon BC Romanian Missions</td>
       <td class="loc-col">Somerset, KY</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Kim Chandler<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kim Chandler</td>
       <td class="church-col">Langdon BC Romanian Missions</td>
       <td class="loc-col">Somerset, KY</td>
     </tr>
@@ -1096,7 +1066,7 @@
       <td class="loc-col">Texarkana, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Michael Cherek<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Michael Cherek</td>
       <td class="church-col">Discover Green Bay</td>
       <td class="loc-col">Green Bay, WI</td>
     </tr>
@@ -1111,12 +1081,12 @@
       <td class="loc-col">Ft. Meade, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Marie Cimino<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Marie Cimino</td>
       <td class="church-col">Harvest Panama Mission</td>
       <td class="loc-col">Chitre, Panama</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Mark Cimino<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Mark Cimino</td>
       <td class="church-col">Harvest Panama Mission</td>
       <td class="loc-col">Chitre, Panama</td>
     </tr>
@@ -1186,7 +1156,7 @@
       <td class="loc-col">Daingerfield, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Neal Clark<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Neal Clark</td>
       <td class="church-col">South Union BC</td>
       <td class="loc-col">Daingerfield, TX</td>
     </tr>
@@ -1201,7 +1171,7 @@
       <td class="loc-col">Hillsboro, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">R. L. Clark<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">R. L. Clark</td>
       <td class="church-col">Concord Baptist</td>
       <td class="loc-col">Norman, OK</td>
     </tr>
@@ -1221,7 +1191,7 @@
       <td class="loc-col">Malvern, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Randy Cloud<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Randy Cloud</td>
       <td class="church-col">Landmark MBC</td>
       <td class="loc-col">Vilonia, AR</td>
     </tr>
@@ -1241,7 +1211,7 @@
       <td class="loc-col">Texarkana, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Justin Coburn<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Justin Coburn</td>
       <td class="church-col">Northern Hills Baptist Church</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
@@ -1371,7 +1341,7 @@
       <td class="loc-col">Texarkana, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Roger Copeland<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Roger Copeland</td>
       <td class="church-col">Northern Hills Baptist Church</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
@@ -1386,7 +1356,7 @@
       <td class="loc-col">Texarkana, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">J.A. Crain<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">J.A. Crain</td>
       <td class="church-col">Bogard Press-CEO</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
@@ -1406,12 +1376,12 @@
       <td class="loc-col">Batesville, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Nicole Crawford<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Nicole Crawford</td>
       <td class="church-col">Cornerstone MBC</td>
       <td class="loc-col">Bolingbrook, IL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Ronald Crawford<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ronald Crawford</td>
       <td class="church-col">Cornerstone MBC</td>
       <td class="loc-col">Bolingbrook, IL</td>
     </tr>
@@ -1531,7 +1501,7 @@
       <td class="loc-col">St Helens, OR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Hagan Cupples<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Hagan Cupples</td>
       <td class="church-col">Hyde Park Baptist Church</td>
       <td class="loc-col">West Monroe, LA</td>
     </tr>
@@ -1547,7 +1517,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-D">
-      <td colspan="4"><span class="letter-badge">D</span></td>
+      <td colspan="3"><span class="letter-badge">D</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Jonathon D Smith</td>
@@ -1595,12 +1565,12 @@
       <td class="loc-col">Coeur d'Alene, ID</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Becky Dean<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Becky Dean</td>
       <td class="church-col">Berean MBC</td>
       <td class="loc-col">Coeur d'Alene, ID</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Matt Dean<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Matt Dean</td>
       <td class="church-col">Berean MBC</td>
       <td class="loc-col">Coeur d'Alene, ID</td>
     </tr>
@@ -1645,7 +1615,7 @@
       <td class="loc-col">Dexter, ME</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Michael Dicus<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Michael Dicus</td>
       <td class="church-col">James Greene & Assoc.</td>
       <td class="loc-col">Sherwood, AR</td>
     </tr>
@@ -1660,7 +1630,7 @@
       <td class="loc-col">Hot Springs, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Ashley Diggs<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ashley Diggs</td>
       <td class="church-col">Midtown Church Plant</td>
       <td class="loc-col">Little Rock, AR</td>
     </tr>
@@ -1670,32 +1640,32 @@
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Will Diggs<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Will Diggs</td>
       <td class="church-col">Midtown Church Plant</td>
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">William J’Amauri Diggs<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">William J’Amauri Diggs</td>
       <td class="church-col">Midtown Church Plant</td>
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Anita Dillahunty<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Anita Dillahunty</td>
       <td class="church-col">Flatwoods MBC</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Evelyn Dillahunty<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Evelyn Dillahunty</td>
       <td class="church-col">Flatwoods MBC</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Joel "Bud" Dillahunty<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Joel "Bud" Dillahunty</td>
       <td class="church-col">Flatwoods MBC</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Mason Dillahunty<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Mason Dillahunty</td>
       <td class="church-col">Flatwoods MBC</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
@@ -1730,17 +1700,17 @@
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">W. A. Dillard<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">W. A. Dillard</td>
       <td class="church-col">Francois MBC</td>
       <td class="loc-col">Malvern, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Josh Doremus<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Josh Doremus</td>
       <td class="church-col">Landmark MBC</td>
       <td class="loc-col">Pensacola, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Randi-Kim Jasper Doremus<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Randi-Kim Jasper Doremus</td>
       <td class="church-col">Landmark MBC</td>
       <td class="loc-col">Pensacola, FL</td>
     </tr>
@@ -1750,7 +1720,7 @@
       <td class="loc-col">North Little Rock, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Todd Dornan<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Todd Dornan</td>
       <td class="church-col">Faith Baptist Church</td>
       <td class="loc-col">North Little Rock, AR</td>
     </tr>
@@ -1796,7 +1766,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-E">
-      <td colspan="4"><span class="letter-badge">E</span></td>
+      <td colspan="3"><span class="letter-badge">E</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Jeffrey Ellis</td>
@@ -1834,27 +1804,27 @@
       <td class="loc-col">West Monroe, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Laura Emory<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Laura Emory</td>
       <td class="church-col">Hyde Park</td>
       <td class="loc-col">West Monroe, LA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Trey Emory<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Trey Emory</td>
       <td class="church-col">Hyde Park Baptist Church</td>
       <td class="loc-col">West Monroe, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Maggie Emry<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Maggie Emry</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Walt Emry<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Walt Emry</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Jason Enochs<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jason Enochs</td>
       <td class="church-col">Hughes Springs MBC</td>
       <td class="loc-col">Hughes Springs, TX</td>
     </tr>
@@ -1905,7 +1875,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-F">
-      <td colspan="4"><span class="letter-badge">F</span></td>
+      <td colspan="3"><span class="letter-badge">F</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Elaina Faulkner</td>
@@ -1923,12 +1893,12 @@
       <td class="loc-col">Greenwood, MS</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Chuck Fernandez<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Chuck Fernandez</td>
       <td class="church-col">1st Baptist East Bay</td>
       <td class="loc-col">East Africa/Florida</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Terry Fernandez<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Terry Fernandez</td>
       <td class="church-col">1st Baptist East Bay</td>
       <td class="loc-col">East Africa/Florida</td>
     </tr>
@@ -2003,7 +1973,7 @@
       <td class="loc-col">Mansfield, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Justin Foster<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Justin Foster</td>
       <td class="church-col">TECH Team Advantage</td>
       <td class="loc-col">Longview, TX</td>
     </tr>
@@ -2028,7 +1998,7 @@
       <td class="loc-col">Sheridan, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Tyler Freeman<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Tyler Freeman</td>
       <td class="church-col">Calvary MBC</td>
       <td class="loc-col">Sheridan, AR</td>
     </tr>
@@ -2049,7 +2019,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-G">
-      <td colspan="4"><span class="letter-badge">G</span></td>
+      <td colspan="3"><span class="letter-badge">G</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Candace Gaddis</td>
@@ -2062,7 +2032,7 @@
       <td class="loc-col">Benton, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Carmenza Gage<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Carmenza Gage</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -2072,7 +2042,7 @@
       <td class="loc-col">Redfield, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jim Gage<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jim Gage</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -2082,7 +2052,7 @@
       <td class="loc-col">Auckland, NZ</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Juan Gallegos<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Juan Gallegos</td>
       <td class="church-col">Central Baptist Church</td>
       <td class="loc-col">Cd. Acuña, Mexico</td>
     </tr>
@@ -2092,7 +2062,7 @@
       <td class="loc-col">Cd. Acuña, Mexico</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Andi Gardner<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Andi Gardner</td>
       <td class="church-col">Second Baptist Church</td>
       <td class="loc-col">Malvern, AR</td>
     </tr>
@@ -2147,7 +2117,7 @@
       <td class="loc-col">Alvin, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Lisa Gee<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Lisa Gee</td>
       <td class="church-col">First Landmark MBC</td>
       <td class="loc-col">Mishawaka, IN</td>
     </tr>
@@ -2202,7 +2172,7 @@
       <td class="loc-col">Allen, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jay Gibson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jay Gibson</td>
       <td class="church-col">Harvest Oaks Baptist Church</td>
       <td class="loc-col">Allen, TX</td>
     </tr>
@@ -2212,17 +2182,17 @@
       <td class="loc-col">Benton, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Charlie Gill<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Charlie Gill</td>
       <td class="church-col">Unity Baptist Church</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Libby Gill<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Libby Gill</td>
       <td class="church-col">Unity Baptist Church</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Rachel Gillespie<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Rachel Gillespie</td>
       <td class="church-col">Compass Baptist NYC</td>
       <td class="loc-col">Manhattan, NY</td>
     </tr>
@@ -2242,7 +2212,7 @@
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Adolfo Gonzalez<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Adolfo Gonzalez</td>
       <td class="church-col">Northern Hills Baptist Church</td>
       <td class="loc-col">Leon, Mexico</td>
     </tr>
@@ -2257,7 +2227,7 @@
       <td class="loc-col">Leon, Mexico</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Petit Gonzalez<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Petit Gonzalez</td>
       <td class="church-col">Northern Hills Baptist Church</td>
       <td class="loc-col">Leon, Mexico</td>
     </tr>
@@ -2347,7 +2317,7 @@
       <td class="loc-col">Minden, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Collin Gregg<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Collin Gregg</td>
       <td class="church-col">Calvary Baptist Church</td>
       <td class="loc-col">Magnolia, AR</td>
     </tr>
@@ -2372,7 +2342,7 @@
       <td class="loc-col">Benton, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jerry Grimes<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jerry Grimes</td>
       <td class="church-col">Living Faith MBC</td>
       <td class="loc-col">Fort Smith, AR</td>
     </tr>
@@ -2383,10 +2353,10 @@
     </tr>
 
     <tr class="letter-header" id="letter-H">
-      <td colspan="4"><span class="letter-badge">H</span></td>
+      <td colspan="3"><span class="letter-badge">H</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Allen Hagood<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Allen Hagood</td>
       <td class="church-col">Saline MBC</td>
       <td class="loc-col">Tull, AR</td>
     </tr>
@@ -2426,7 +2396,7 @@
       <td class="loc-col">Kerrville, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Todd Haneline<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Todd Haneline</td>
       <td class="church-col">Restoration Hill Church</td>
       <td class="loc-col">Kerrville, TX</td>
     </tr>
@@ -2446,12 +2416,12 @@
       <td class="loc-col">Henderson, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Coretta Hansen<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Coretta Hansen</td>
       <td class="church-col">Columbus BC</td>
       <td class="loc-col">Columbus, IN</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Tony Hansen<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Tony Hansen</td>
       <td class="church-col">Columbus BC</td>
       <td class="loc-col">Columbus, IN</td>
     </tr>
@@ -2461,7 +2431,7 @@
       <td class="loc-col">Malvern, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">David Hardin<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">David Hardin</td>
       <td class="church-col">Hillcrest Baptist Church</td>
       <td class="loc-col">Acworth, GA</td>
     </tr>
@@ -2506,12 +2476,12 @@
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jared Harris<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jared Harris</td>
       <td class="church-col">Valley Landmark MBC</td>
       <td class="loc-col">Spokane Valley, WA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Mark Harris<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Mark Harris</td>
       <td class="church-col">Unity MBC</td>
       <td class="loc-col">Little Rock, AR</td>
     </tr>
@@ -2521,7 +2491,7 @@
       <td class="loc-col">Tull, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Samantha Harris<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Samantha Harris</td>
       <td class="church-col">Valley Landmark MBC</td>
       <td class="loc-col">Spokane Valley, WA</td>
     </tr>
@@ -2546,7 +2516,7 @@
       <td class="loc-col">Somerset, KY</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Cliff Hawkins<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Cliff Hawkins</td>
       <td class="church-col">Florence Street Baptist Church</td>
       <td class="loc-col">Broken Arrow, OK</td>
     </tr>
@@ -2636,7 +2606,7 @@
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jackson Heflin<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jackson Heflin</td>
       <td class="church-col">Calvary Baptist Church</td>
       <td class="loc-col">Magnolia, AR</td>
     </tr>
@@ -2646,12 +2616,12 @@
       <td class="loc-col">Magnolia, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Joe Hellums<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Joe Hellums</td>
       <td class="church-col">New Liberty MBC</td>
       <td class="loc-col">Beebe, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Katie Hellums<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Katie Hellums</td>
       <td class="church-col">New Liberty MBC</td>
       <td class="loc-col">Beebe, AR</td>
     </tr>
@@ -2681,7 +2651,7 @@
       <td class="loc-col">Marion, IN</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Tim Herrington<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Tim Herrington</td>
       <td class="church-col">Central Missionary Baptist</td>
       <td class="loc-col">Pineville, LA</td>
     </tr>
@@ -2731,7 +2701,7 @@
       <td class="loc-col">Amite, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Rudy Holland<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Rudy Holland</td>
       <td class="church-col">NCLL</td>
       <td class="loc-col">Largo, FL</td>
     </tr>
@@ -2786,7 +2756,7 @@
       <td class="loc-col">Seymour, IN</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Will Honeycutt<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Will Honeycutt</td>
       <td class="church-col">Faith Bible Institute</td>
       <td class="loc-col">Monroe, LA</td>
     </tr>
@@ -2801,17 +2771,17 @@
       <td class="loc-col">Texarkana, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ronald Howell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ronald Howell</td>
       <td class="church-col">Cornerstone MBC</td>
       <td class="loc-col">Bolingbrook, IL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Sharon Howell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Sharon Howell</td>
       <td class="church-col">Cornerstone MBC</td>
       <td class="loc-col">Bolingbrook, IL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ted Hoyle<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ted Hoyle</td>
       <td class="church-col">Shiloh MBC-Riconada</td>
       <td class="loc-col">Russellville, AR</td>
     </tr>
@@ -2856,18 +2826,18 @@
       <td class="loc-col">Sterlington, LA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Kevin Hutcheson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kevin Hutcheson</td>
       <td class="church-col">Sterlington Missions</td>
       <td class="loc-col">Sterlington, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Nicholas Hutcheson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Nicholas Hutcheson</td>
       <td class="church-col">Faith Baptist Church/Sterlington Missions</td>
       <td class="loc-col">Sterlington, LA</td>
     </tr>
 
     <tr class="letter-header" id="letter-I">
-      <td colspan="4"><span class="letter-badge">I</span></td>
+      <td colspan="3"><span class="letter-badge">I</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Carole Idom</td>
@@ -2901,7 +2871,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-J">
-      <td colspan="4"><span class="letter-badge">J</span></td>
+      <td colspan="3"><span class="letter-badge">J</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">A. J. Leatherwood</td>
@@ -2949,12 +2919,12 @@
       <td class="loc-col">Copenhagen, DK</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Melinda Jewell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Melinda Jewell</td>
       <td class="church-col">Texarkana Bapt. Orphanage</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Bill Johnson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Bill Johnson</td>
       <td class="church-col">Calvary MBC</td>
       <td class="loc-col">Hamburg, AR</td>
     </tr>
@@ -3004,7 +2974,7 @@
       <td class="loc-col">Malvern, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Danny Jones<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Danny Jones</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -3024,7 +2994,7 @@
       <td class="loc-col">Fayetteville, NC</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jimmy Jones<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jimmy Jones</td>
       <td class="church-col">TX Bapt Institute and Seminary</td>
       <td class="loc-col">Henderson, TX</td>
     </tr>
@@ -3034,7 +3004,7 @@
       <td class="loc-col">Batesville, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Laura Jones<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Laura Jones</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -3044,7 +3014,7 @@
       <td class="loc-col">Fayetteville, NC</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Rachel Jones<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Rachel Jones</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -3054,7 +3024,7 @@
       <td class="loc-col">Batesville, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Tiffany Jones<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Tiffany Jones</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -3075,10 +3045,10 @@
     </tr>
 
     <tr class="letter-header" id="letter-K">
-      <td colspan="4"><span class="letter-badge">K</span></td>
+      <td colspan="3"><span class="letter-badge">K</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Shin Kamoda<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Shin Kamoda</td>
       <td class="church-col">Japanese Missions</td>
       <td class="loc-col">Hachioji, Tokyo</td>
     </tr>
@@ -3108,7 +3078,7 @@
       <td class="loc-col">Yokohama, Japan</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Mitch Kawahara<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Mitch Kawahara</td>
       <td class="church-col">Fountain (Izumi) MBC</td>
       <td class="loc-col">Yokohama, Japan</td>
     </tr>
@@ -3228,7 +3198,7 @@
       <td class="loc-col">Burke, VA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">MyungJung Kim<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">MyungJung Kim</td>
       <td class="church-col">Yeonseo Mission</td>
       <td class="loc-col">Seoul, Korea</td>
     </tr>
@@ -3258,12 +3228,12 @@
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Bruce Knight<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Bruce Knight</td>
       <td class="church-col">Faith Bible Institute</td>
       <td class="loc-col">Monroe, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Julie Knight<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Julie Knight</td>
       <td class="church-col">Alvin MBC</td>
       <td class="loc-col">Alvin, TX</td>
     </tr>
@@ -3299,7 +3269,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-L">
-      <td colspan="4"><span class="letter-badge">L</span></td>
+      <td colspan="3"><span class="letter-badge">L</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Caleb Lamb</td>
@@ -3312,7 +3282,7 @@
       <td class="loc-col">Judsonia, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Greta Lamb<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Greta Lamb</td>
       <td class="church-col">Hillcrest-Macedonian Builders</td>
       <td class="loc-col">Acworth, GA</td>
     </tr>
@@ -3322,7 +3292,7 @@
       <td class="loc-col">Judsonia, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Paul Lamb<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Paul Lamb</td>
       <td class="church-col">Hillcrest-Macedonian Builders</td>
       <td class="loc-col">Acworth, GA</td>
     </tr>
@@ -3332,47 +3302,47 @@
       <td class="loc-col">Gambrills, MD</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Carolyn Langston<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Carolyn Langston</td>
       <td class="church-col">Calvary Baptist</td>
       <td class="loc-col">Orlando, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Dean Langston<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Dean Langston</td>
       <td class="church-col">Calvary Baptist</td>
       <td class="loc-col">Orlando, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Baby "K" Lanier<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Baby "K" Lanier</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Kaitlyn Lanier<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kaitlyn Lanier</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Kayla Lanier<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kayla Lanier</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Kiera Lanier<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kiera Lanier</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Kyler Lanier<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kyler Lanier</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Leatrice Lanier<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Leatrice Lanier</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Walter Lanier<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Walter Lanier</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -3402,7 +3372,7 @@
       <td class="loc-col">West Monroe, LA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Coty Lee<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Coty Lee</td>
       <td class="church-col">Hyde Park Baptist Church</td>
       <td class="loc-col">West Monroe, LA</td>
     </tr>
@@ -3437,7 +3407,7 @@
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">David Leventry<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">David Leventry</td>
       <td class="church-col">TECH Team Advantage</td>
       <td class="loc-col">Longview, TX</td>
     </tr>
@@ -3517,7 +3487,7 @@
       <td class="loc-col">Pine Bluff, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Kristin Long<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kristin Long</td>
       <td class="church-col">Langdon Street Baptist Church</td>
       <td class="loc-col">Somerset, KY</td>
     </tr>
@@ -3547,7 +3517,7 @@
       <td class="loc-col">Kentwood, MI</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Connie Loy<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Connie Loy</td>
       <td class="church-col">Taylor's Chapel</td>
       <td class="loc-col">Malvern, AR</td>
     </tr>
@@ -3572,12 +3542,12 @@
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Krystal Luellen<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Krystal Luellen</td>
       <td class="church-col">Stockwell Road MBC</td>
       <td class="loc-col">Bossier City, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Nathan Luellen<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Nathan Luellen</td>
       <td class="church-col">Stockwell Road MBC</td>
       <td class="loc-col">Bossier City, LA</td>
     </tr>
@@ -3593,7 +3563,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-M">
-      <td colspan="4"><span class="letter-badge">M</span></td>
+      <td colspan="3"><span class="letter-badge">M</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Amy Mackrill</td>
@@ -3606,17 +3576,17 @@
       <td class="loc-col">Lynn, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Hugo Mallozzi<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Hugo Mallozzi</td>
       <td class="church-col">Pine Hill Baptist Church</td>
       <td class="loc-col">Somerset, KY</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Hugo Adolfo Mallozzi<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Hugo Adolfo Mallozzi</td>
       <td class="church-col">Pine Hill Baptist Church</td>
       <td class="loc-col">Somerset, KY</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Dave C Manary<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Dave C Manary</td>
       <td class="church-col">New Vision Baptist Church</td>
       <td class="loc-col">Searcy, AR</td>
     </tr>
@@ -3656,7 +3626,7 @@
       <td class="loc-col">Cordoba, Argentina</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Scott Maness<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Scott Maness</td>
       <td class="church-col">Nevill's Chapel Baptist Church</td>
       <td class="loc-col">Cordoba, Argentina</td>
     </tr>
@@ -3691,7 +3661,7 @@
       <td class="loc-col">Inwood, WV</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Joshua Marsh<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Joshua Marsh</td>
       <td class="church-col">First Baptist Church of Inwood</td>
       <td class="loc-col">Inwood, WV</td>
     </tr>
@@ -3701,17 +3671,17 @@
       <td class="loc-col">Gurdon, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Jeremiah Mattingly<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jeremiah Mattingly</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jim Mattingly<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jim Mattingly</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ruby Mattingly<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ruby Mattingly</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -3731,7 +3701,7 @@
       <td class="loc-col">Kentwood, MI</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Kevin Mattox<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kevin Mattox</td>
       <td class="church-col">Madison Avenue MBC</td>
       <td class="loc-col">Kentwood, MI</td>
     </tr>
@@ -3786,7 +3756,7 @@
       <td class="loc-col">Nancy, KY</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Andrew McClung<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Andrew McClung</td>
       <td class="church-col">Living Word MBC</td>
       <td class="loc-col">Long Beach, CA</td>
     </tr>
@@ -3886,12 +3856,12 @@
       <td class="loc-col">Center Valley, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Casey McNair<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Casey McNair</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Jeff McNair<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jeff McNair</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -3986,7 +3956,7 @@
       <td class="loc-col">Hensley, AR, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Annette Mencer<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Annette Mencer</td>
       <td class="church-col">Fairview MBC</td>
       <td class="loc-col">Hensley, AR, AR</td>
     </tr>
@@ -4071,7 +4041,7 @@
       <td class="loc-col">Bryant, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ryan Miller<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ryan Miller</td>
       <td class="church-col">FBC of Northern Heights</td>
       <td class="loc-col">Kansas City, MO</td>
     </tr>
@@ -4096,12 +4066,12 @@
       <td class="loc-col">Lorton, VA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Barbara Moisevici<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Barbara Moisevici</td>
       <td class="church-col">Real Hope Romania</td>
       <td class="loc-col">Brasov, Romania</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Marian Moisevici<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Marian Moisevici</td>
       <td class="church-col">Real Hope Romania</td>
       <td class="loc-col">Brasov, Romania</td>
     </tr>
@@ -4136,7 +4106,7 @@
       <td class="loc-col">Mountain View, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Joe Morell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Joe Morell</td>
       <td class="church-col">Flatwoods MBC</td>
       <td class="loc-col">Mountain View, AR</td>
     </tr>
@@ -4166,7 +4136,7 @@
       <td class="loc-col">Pensacola, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Curtis Morrell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Curtis Morrell</td>
       <td class="church-col">Landmark MBC</td>
       <td class="loc-col">Pensacola, FL</td>
     </tr>
@@ -4191,7 +4161,7 @@
       <td class="loc-col">Bogalusa, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Don Morrow<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Don Morrow</td>
       <td class="church-col">South Lakewood Baptist Church</td>
       <td class="loc-col">Tulsa, OK</td>
     </tr>
@@ -4252,7 +4222,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-N">
-      <td colspan="4"><span class="letter-badge">N</span></td>
+      <td colspan="3"><span class="letter-badge">N</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">John Nations</td>
@@ -4270,7 +4240,7 @@
       <td class="loc-col">Foristell, MO</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Kurt Neeley<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kurt Neeley</td>
       <td class="church-col">Calvary Baptist Church</td>
       <td class="loc-col">Foristell, MO</td>
     </tr>
@@ -4341,10 +4311,10 @@
     </tr>
 
     <tr class="letter-header" id="letter-O">
-      <td colspan="4"><span class="letter-badge">O</span></td>
+      <td colspan="3"><span class="letter-badge">O</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Josie O'Donnell<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Josie O'Donnell</td>
       <td class="church-col">Visit Fort Wayne</td>
       <td class="loc-col">Fort Wayne, IN</td>
     </tr>
@@ -4359,26 +4329,26 @@
       <td class="loc-col">Cascas, Peru</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ellen Oswald<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ellen Oswald</td>
       <td class="church-col">Unity Baptist Church</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">John Oswald<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">John Oswald</td>
       <td class="church-col">Unity Baptist Church / Bogard Press</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Sonya Oswald<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Sonya Oswald</td>
       <td class="church-col">Unity Baptist Church / Bogard Press</td>
       <td class="loc-col">Texarkana, TX</td>
     </tr>
 
     <tr class="letter-header" id="letter-P">
-      <td colspan="4"><span class="letter-badge">P</span></td>
+      <td colspan="3"><span class="letter-badge">P</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Milton Paredes<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Milton Paredes</td>
       <td class="church-col">Second Baptist Church</td>
       <td class="loc-col">Malvern, AR</td>
     </tr>
@@ -4448,7 +4418,7 @@
       <td class="loc-col">Benton, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Terry Parrish<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Terry Parrish</td>
       <td class="church-col">Spring Creek Baptist Church</td>
       <td class="loc-col">Benton, AR</td>
     </tr>
@@ -4498,7 +4468,7 @@
       <td class="loc-col">Tulsa, OK</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Scott Pevehouse<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Scott Pevehouse</td>
       <td class="church-col">South Lakewood Baptist Church</td>
       <td class="loc-col">Tulsa, OK</td>
     </tr>
@@ -4508,7 +4478,7 @@
       <td class="loc-col">Lonsdale, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Anthony Phillips<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Anthony Phillips</td>
       <td class="church-col">Calvary MBC Orlando</td>
       <td class="loc-col">Nantes, France</td>
     </tr>
@@ -4533,17 +4503,17 @@
       <td class="loc-col">Nantes, France</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Raen Phillips<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Raen Phillips</td>
       <td class="church-col">New Road</td>
       <td class="loc-col">Amarillo, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Raena Phillips<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Raena Phillips</td>
       <td class="church-col">New Road</td>
       <td class="loc-col">Amarillo, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Randy Phillips<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Randy Phillips</td>
       <td class="church-col">New Road</td>
       <td class="loc-col">Amarillo, TX</td>
     </tr>
@@ -4593,12 +4563,12 @@
       <td class="loc-col">Pensacola, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Wes Pleasants<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Wes Pleasants</td>
       <td class="church-col">Faith Bible Institute</td>
       <td class="loc-col">Monroe, LA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Toni Poe<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Toni Poe</td>
       <td class="church-col">Taylor's Chapel</td>
       <td class="loc-col">Malvern, AR</td>
     </tr>
@@ -4659,16 +4629,16 @@
     </tr>
 
     <tr class="letter-header" id="letter-Q">
-      <td colspan="4"><span class="letter-badge">Q</span></td>
+      <td colspan="3"><span class="letter-badge">Q</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Katie Quackenbush<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Katie Quackenbush</td>
       <td class="church-col">Visit Jacksonville</td>
       <td class="loc-col">Jacksonville, FL</td>
     </tr>
 
     <tr class="letter-header" id="letter-R">
-      <td colspan="4"><span class="letter-badge">R</span></td>
+      <td colspan="3"><span class="letter-badge">R</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Brenda Raburn</td>
@@ -4701,12 +4671,12 @@
       <td class="loc-col">Texarkana, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Marc A. Ray<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Marc A. Ray</td>
       <td class="church-col">Antioch Missionary Baptist</td>
       <td class="loc-col">Noble, OK</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Rebekah L. Ray<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Rebekah L. Ray</td>
       <td class="church-col">Antioch Missionary Baptist</td>
       <td class="loc-col">Noble, OK</td>
     </tr>
@@ -4756,12 +4726,12 @@
       <td class="loc-col">Keyport, NJ</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Patsy Rice<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Patsy Rice</td>
       <td class="church-col">Northern Hills Baptist Church</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Robin Rice<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Robin Rice</td>
       <td class="church-col">Northern Hills Baptist Church</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
@@ -4816,12 +4786,12 @@
       <td class="loc-col">Tifton, GA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Archie Ritch<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Archie Ritch</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jill Ritch<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jill Ritch</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -4896,7 +4866,7 @@
       <td class="loc-col">Harrison, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Travis Robinson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Travis Robinson</td>
       <td class="church-col">Harris Chapel MBC</td>
       <td class="loc-col">Mount Pleasant, TX</td>
     </tr>
@@ -4931,7 +4901,7 @@
       <td class="loc-col">Cunningham, TN</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Terry Romine<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Terry Romine</td>
       <td class="church-col">Hopewell Baptist Church</td>
       <td class="loc-col">Cunningham, TN</td>
     </tr>
@@ -4951,7 +4921,7 @@
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Brad Rountree<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Brad Rountree</td>
       <td class="church-col">New Liberty Baptist Church</td>
       <td class="loc-col">Garland, TX</td>
     </tr>
@@ -5016,12 +4986,12 @@
       <td class="loc-col">Greenwood, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Brandon Rutherford<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Brandon Rutherford</td>
       <td class="church-col">Compass Baptist NYC</td>
       <td class="loc-col">Manhattan, NY</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Diana Rutherford<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Diana Rutherford</td>
       <td class="church-col">Compass Baptist NYC</td>
       <td class="loc-col">Manhattan, NY</td>
     </tr>
@@ -5036,7 +5006,7 @@
       <td class="loc-col">Manhattan, NY</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Steve Rutherford<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Steve Rutherford</td>
       <td class="church-col">Calvary Baptist Church</td>
       <td class="loc-col">Orlando, FL</td>
     </tr>
@@ -5072,25 +5042,25 @@
     </tr>
 
     <tr class="letter-header" id="letter-S">
-      <td colspan="4"><span class="letter-badge">S</span></td>
+      <td colspan="3"><span class="letter-badge">S</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Christian Salter<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Christian Salter</td>
       <td class="church-col">New Begin. Of Faith MBC</td>
       <td class="loc-col">Vacaville, CA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Herbert Salter<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Herbert Salter</td>
       <td class="church-col">New Begin. Of Faith MBC</td>
       <td class="loc-col">Vacaville, CA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Pat Salter<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Pat Salter</td>
       <td class="church-col">New Begin. Of Faith MBC</td>
       <td class="loc-col">Vacaville, CA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">John Sanders<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">John Sanders</td>
       <td class="church-col">First Baptist Church</td>
       <td class="loc-col">Cave City, AR</td>
     </tr>
@@ -5130,12 +5100,12 @@
       <td class="loc-col">Cunningham, TN</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Alan Schoeff<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Alan Schoeff</td>
       <td class="church-col">Benchmark Baptist</td>
       <td class="loc-col">Fredericksburg, VA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Julie Schoeff<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Julie Schoeff</td>
       <td class="church-col">Benchmark Baptist</td>
       <td class="loc-col">Fredericksburg, VA</td>
     </tr>
@@ -5170,7 +5140,7 @@
       <td class="loc-col">Delight, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Bryan Sellers<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Bryan Sellers</td>
       <td class="church-col">Delight First Baptist Church</td>
       <td class="loc-col">Delight, AR</td>
     </tr>
@@ -5210,12 +5180,12 @@
       <td class="loc-col">Little Rock, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Darrell Sheeley<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Darrell Sheeley</td>
       <td class="church-col">Bay Lake MBC</td>
       <td class="loc-col">Groveland, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Marcia Sheeley<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Marcia Sheeley</td>
       <td class="church-col">Bay Lake MBC</td>
       <td class="loc-col">Groveland, FL</td>
     </tr>
@@ -5230,7 +5200,7 @@
       <td class="loc-col">Round Rock, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">James Shields<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">James Shields</td>
       <td class="church-col">Faith MBC</td>
       <td class="loc-col">Round Rock, TX</td>
     </tr>
@@ -5240,7 +5210,7 @@
       <td class="loc-col">Round Rock, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">David Shockey<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">David Shockey</td>
       <td class="church-col">Nevill’s Chapel MBC</td>
       <td class="loc-col">Mount Pleasant, TX</td>
     </tr>
@@ -5250,7 +5220,7 @@
       <td class="loc-col">Hamburg, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ken Sibley<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ken Sibley</td>
       <td class="church-col">Wellston MBC</td>
       <td class="loc-col">Wellston, OK</td>
     </tr>
@@ -5295,7 +5265,7 @@
       <td class="loc-col">Mountain View, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Danielle Cebula Sims<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Danielle Cebula Sims</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -5305,7 +5275,7 @@
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Tim Sims<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Tim Sims</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -5320,7 +5290,7 @@
       <td class="loc-col">Smithville, MO</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Melinda Sligar<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Melinda Sligar</td>
       <td class="church-col">Hyatt Regency Riverfront</td>
       <td class="loc-col">Jacksonville, FL</td>
     </tr>
@@ -5380,7 +5350,7 @@
       <td class="loc-col">Bogata, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ryan Smith<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ryan Smith</td>
       <td class="church-col">Texarkana Bapt. Orphanage</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
@@ -5405,7 +5375,7 @@
       <td class="loc-col">Pensacola, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Bobby Sparks<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Bobby Sparks</td>
       <td class="church-col">Emmanuel MBC</td>
       <td class="loc-col">Greenville, TX</td>
     </tr>
@@ -5475,12 +5445,12 @@
       <td class="loc-col">Columbia, MO</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">David Standridge<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">David Standridge</td>
       <td class="church-col">New Prospect MBC</td>
       <td class="loc-col">Benton, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Craig Stark<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Craig Stark</td>
       <td class="church-col">Light of Grace</td>
       <td class="loc-col">Las Vegas, NV</td>
     </tr>
@@ -5550,12 +5520,12 @@
       <td class="loc-col">Star City, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Cindy Stinnett<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Cindy Stinnett</td>
       <td class="church-col">New Liberty MBC</td>
       <td class="loc-col">Beebe, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Mike Stinnett<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Mike Stinnett</td>
       <td class="church-col">New Liberty MBC</td>
       <td class="loc-col">Beebe, AR</td>
     </tr>
@@ -5575,7 +5545,7 @@
       <td class="loc-col">Fort Smith, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jack Story<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jack Story</td>
       <td class="church-col">Landmark Baptist Church</td>
       <td class="loc-col">Venice, FL</td>
     </tr>
@@ -5600,7 +5570,7 @@
       <td class="loc-col">Missouri City, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">John Strader<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">John Strader</td>
       <td class="church-col">Horizon Baptist Church</td>
       <td class="loc-col">Missouri City, TX</td>
     </tr>
@@ -5610,12 +5580,12 @@
       <td class="loc-col">Missouri City, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Herman Strickland<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Herman Strickland</td>
       <td class="church-col">Gulf Coast Baptist College</td>
       <td class="loc-col">Mobile, AL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Irma Strickland<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Irma Strickland</td>
       <td class="church-col">Gulf Coast Baptist College</td>
       <td class="loc-col">Mobile, AL</td>
     </tr>
@@ -5635,7 +5605,7 @@
       <td class="loc-col">Philippine Mission Dev.</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Wayne Stringer<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Wayne Stringer</td>
       <td class="church-col">White Rock MBC</td>
       <td class="loc-col">Philippine Mission Dev.</td>
     </tr>
@@ -5660,7 +5630,7 @@
       <td class="loc-col">White Hall, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Jenna Summers<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jenna Summers</td>
       <td class="church-col">Hillcountry Church</td>
       <td class="loc-col">Austin, TX</td>
     </tr>
@@ -5675,7 +5645,7 @@
       <td class="loc-col">MInden, LA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">J. W. Sumrall<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">J. W. Sumrall</td>
       <td class="church-col">Hyde Park Baptist Church</td>
       <td class="loc-col">West Monroe, LA</td>
     </tr>
@@ -5685,12 +5655,12 @@
       <td class="loc-col">MInden, LA</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Laneta Sumrall<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Laneta Sumrall</td>
       <td class="church-col">Hyde Park Baptist Church</td>
       <td class="loc-col">West Monroe, LA</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Eric Sutton<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Eric Sutton</td>
       <td class="church-col">New Home Baptist Church</td>
       <td class="loc-col">Wetumpka, AL</td>
     </tr>
@@ -5700,7 +5670,7 @@
       <td class="loc-col">Wetumpka, AL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Neal Sutton<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Neal Sutton</td>
       <td class="church-col">Northern Hills Baptist Church</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
@@ -5716,7 +5686,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-T">
-      <td colspan="4"><span class="letter-badge">T</span></td>
+      <td colspan="3"><span class="letter-badge">T</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Becky Tanner</td>
@@ -5769,7 +5739,7 @@
       <td class="loc-col">Madison, MS</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Daniel Teague<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Daniel Teague</td>
       <td class="church-col">Utah Missions/Landmark MBC</td>
       <td class="loc-col">Bedford, IN</td>
     </tr>
@@ -5784,7 +5754,7 @@
       <td class="loc-col">Bedford, IN</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Lourdes Teague<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Lourdes Teague</td>
       <td class="church-col">Utah Missions/Landmark MBC</td>
       <td class="loc-col">Bedford, IN</td>
     </tr>
@@ -5839,7 +5809,7 @@
       <td class="loc-col">Richwood, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Heather Thompson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Heather Thompson</td>
       <td class="church-col">Texarkana Bapt. Orphanage</td>
       <td class="loc-col">Texarkana, AR</td>
     </tr>
@@ -5854,12 +5824,12 @@
       <td class="loc-col">Richwood, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Matthew Thompson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Matthew Thompson</td>
       <td class="church-col">Sublett Road Baptist Church</td>
       <td class="loc-col">Arlington, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Michael D. Thompson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Michael D. Thompson</td>
       <td class="church-col">Mt. Sylvia MBC</td>
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
@@ -5869,7 +5839,7 @@
       <td class="loc-col">Overton, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Sarah Thompson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Sarah Thompson</td>
       <td class="church-col">Sublett Road Baptist Church</td>
       <td class="loc-col">Arlington, TX</td>
     </tr>
@@ -5949,7 +5919,7 @@
       <td class="loc-col">Houston, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Eric Townsend<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Eric Townsend</td>
       <td class="church-col">James Greene & Assoc.</td>
       <td class="loc-col">Sherwood, AR</td>
     </tr>
@@ -5970,7 +5940,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-U">
-      <td colspan="4"><span class="letter-badge">U</span></td>
+      <td colspan="3"><span class="letter-badge">U</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">Pete Underwood</td>
@@ -5979,10 +5949,10 @@
     </tr>
 
     <tr class="letter-header" id="letter-V">
-      <td colspan="4"><span class="letter-badge">V</span></td>
+      <td colspan="3"><span class="letter-badge">V</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Al Valladares<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Al Valladares</td>
       <td class="church-col">Mexican Baptist Institute</td>
       <td class="loc-col">Reynosa, Mexico</td>
     </tr>
@@ -6007,7 +5977,7 @@
       <td class="loc-col">Rinconada, NL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Luis Vazquez<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Luis Vazquez</td>
       <td class="church-col">Belen MBM</td>
       <td class="loc-col">Rinconada, NL</td>
     </tr>
@@ -6027,7 +5997,7 @@
       <td class="loc-col">Greenville, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Gabby Vesely<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Gabby Vesely</td>
       <td class="church-col">Horizon Baptist Church</td>
       <td class="loc-col">Missouri City, TX</td>
     </tr>
@@ -6042,7 +6012,7 @@
       <td class="loc-col">Missouri City, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Jodie Vesely<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Jodie Vesely</td>
       <td class="church-col">Horizon Baptist Church</td>
       <td class="loc-col">Missouri City, TX</td>
     </tr>
@@ -6053,7 +6023,7 @@
     </tr>
 
     <tr class="letter-header" id="letter-W">
-      <td colspan="4"><span class="letter-badge">W</span></td>
+      <td colspan="3"><span class="letter-badge">W</span></td>
     </tr>
     <tr class="row-even">
       <td class="name-col">John W Smith</td>
@@ -6076,7 +6046,7 @@
       <td class="loc-col">Malvern, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Robert Wallace<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Robert Wallace</td>
       <td class="church-col">Texas Baptist Institute & Seminary</td>
       <td class="loc-col">Henderson, TX</td>
     </tr>
@@ -6101,12 +6071,12 @@
       <td class="loc-col">Mt Pleasant, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Tim Ward<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Tim Ward</td>
       <td class="church-col">Grace Baptist Church</td>
       <td class="loc-col">Jonesboro, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Todd Ward<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Todd Ward</td>
       <td class="church-col">Nevill's Chapel MBC</td>
       <td class="loc-col">Mt Pleasant, TX</td>
     </tr>
@@ -6136,7 +6106,7 @@
       <td class="loc-col">Delight, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">J.D. Watson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">J.D. Watson</td>
       <td class="church-col">Liberty Hill MBC</td>
       <td class="loc-col">Delight, AR</td>
     </tr>
@@ -6266,17 +6236,17 @@
       <td class="loc-col">Taylor, AR</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">David Wiersema<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">David Wiersema</td>
       <td class="church-col">New Home Baptist Church</td>
       <td class="loc-col">Wetumpka, AL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Dianna Wiersema<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Dianna Wiersema</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Doug Wiersema<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Doug Wiersema</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winter Haven, FL</td>
     </tr>
@@ -6311,7 +6281,7 @@
       <td class="loc-col">Center, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Mike Wilkes<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Mike Wilkes</td>
       <td class="church-col">Whispering Pines MBC</td>
       <td class="loc-col">Minden, LA</td>
     </tr>
@@ -6351,7 +6321,7 @@
       <td class="loc-col">Benton, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">James Williams<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">James Williams</td>
       <td class="church-col">CSBCTX</td>
       <td class="loc-col">College Station, TX</td>
     </tr>
@@ -6386,7 +6356,7 @@
       <td class="loc-col">Houston, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Kym Williams<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Kym Williams</td>
       <td class="church-col">CSBCTX</td>
       <td class="loc-col">College Station, TX</td>
     </tr>
@@ -6406,27 +6376,27 @@
       <td class="loc-col">Martinsburg, WV</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Bryan Williamson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Bryan Williamson</td>
       <td class="church-col">Nevill's Chapel MBC</td>
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Catelynne Williamson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Catelynne Williamson</td>
       <td class="church-col">Nevill's Chapel MBC</td>
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Noah Williamson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Noah Williamson</td>
       <td class="church-col">Nevill's Chapel MBC</td>
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ruth Williamson<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ruth Williamson</td>
       <td class="church-col">Nevill's Chapel MBC</td>
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Bryan Williamson, Jr.<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Bryan Williamson, Jr.</td>
       <td class="church-col">Nevill's Chapel MBC</td>
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
@@ -6441,7 +6411,7 @@
       <td class="loc-col">Colt, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Andrea Willis<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Andrea Willis</td>
       <td class="church-col">Spring Creek MBC</td>
       <td class="loc-col">Benton, AR</td>
     </tr>
@@ -6541,7 +6511,7 @@
       <td class="loc-col">White Hall, AR</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ethan Witt<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ethan Witt</td>
       <td class="church-col">Westwood MBC</td>
       <td class="loc-col">Winterhaven, FL</td>
     </tr>
@@ -6551,7 +6521,7 @@
       <td class="loc-col">Jacksonville, FL</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Caleb J Wood<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Caleb J Wood</td>
       <td class="church-col">Valley Landmark MBC</td>
       <td class="loc-col">Spokane Valley, WA</td>
     </tr>
@@ -6591,7 +6561,7 @@
       <td class="loc-col">Joaquin, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Ken Worthen<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Ken Worthen</td>
       <td class="church-col">Victory Missionary Baptist</td>
       <td class="loc-col">Russellville, AR</td>
     </tr>
@@ -6601,7 +6571,7 @@
       <td class="loc-col">Timpson, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Brandon Wright<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Brandon Wright</td>
       <td class="church-col">Grace Baptist Church</td>
       <td class="loc-col">Jonesboro, AR</td>
     </tr>
@@ -6611,7 +6581,7 @@
       <td class="loc-col">Timpson, TX</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Cody Wright<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Cody Wright</td>
       <td class="church-col">The Refuge Baptist</td>
       <td class="loc-col">Plainfield, IN</td>
     </tr>
@@ -6666,16 +6636,16 @@
       <td class="loc-col">Interlochen, MI</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Philip Wysocki<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Philip Wysocki</td>
       <td class="church-col">Anchor Landmark Baptist</td>
       <td class="loc-col">Interlochen, MI</td>
     </tr>
 
     <tr class="letter-header" id="letter-Y">
-      <td colspan="4"><span class="letter-badge">Y</span></td>
+      <td colspan="3"><span class="letter-badge">Y</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">John Yates<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">John Yates</td>
       <td class="church-col">Faith Bible Institute</td>
       <td class="loc-col">Monroe, LA</td>
     </tr>
@@ -6685,21 +6655,21 @@
       <td class="loc-col">Monrovia, MD</td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Mike Yoho<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Mike Yoho</td>
       <td class="church-col">First Baptist Church of Green Valley</td>
       <td class="loc-col">Monrovia, MD</td>
     </tr>
     <tr class="row-odd">
-      <td class="name-col">Joseph Young<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Joseph Young</td>
       <td class="church-col">Colo BC/Macedonian MS</td>
       <td class="loc-col">Somerset, KY</td>
     </tr>
 
     <tr class="letter-header" id="letter-Z">
-      <td colspan="4"><span class="letter-badge">Z</span></td>
+      <td colspan="3"><span class="letter-badge">Z</span></td>
     </tr>
     <tr class="row-even">
-      <td class="name-col">Linda Zepeda<span class="exhib-tag">EXHIBITOR</span></td>
+      <td class="name-col">Linda Zepeda</td>
       <td class="church-col">Mt. Sylvia MBC</td>
       <td class="loc-col">Mt. Pleasant, TX</td>
     </tr>
